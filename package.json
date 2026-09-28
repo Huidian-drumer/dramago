@@ -1,0 +1,21 @@
+{
+  "name": "dramago-creative-workbench",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs",
+    "validate": "node scripts/validate-artifact.mjs",
+    "test": "node --test test/*.test.mjs",
+    "audit:l2": "npm run build && node audit/run-wrapper-audit.mjs",
+    "db:validate": "node audit/validate-migrations.mjs",
+    "db:generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "drizzle-orm": "0.45.2"
+  },
+  "devDependencies": {
+    "drizzle-kit": "0.31.10"
+  }
+}

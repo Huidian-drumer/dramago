@@ -1,0 +1,218 @@
+{
+  "packetVersion": "0.1",
+  "routeContract": {
+    "routeId": "route-identity-dock-01",
+    "protagonist": {
+      "name": "周澄",
+      "identity": "第七码头夜班临时检修员；失踪海事工程师周芩的女儿"
+    },
+    "centralGoal": "在不依赖身份特权的前提下阻止老旧门机事故，并为母亲洗清被归咎的旧事故责任。",
+    "ending": "门机停稳、工人获救，事故报告依据证据更正；周澄留下继续完成检修。",
+    "climaxResolution": "周澄依靠多年学到的机械知识、随身已有的旧检修册和现场操作完成旁路锁止。",
+    "knowledgeBoundaries": [
+      {
+        "subject": "罗主任",
+        "fact": "周澄是周芩的女儿",
+        "unknownUntil": "周澄完成锁止并主动说明身份",
+        "forbiddenClaims": [
+          {},
+          {}
+        ],
+        "allowedRevealMarkers": [
+          "周芩是我母亲",
+          "我是周芩的女儿"
+        ]
+      }
+    ],
+    "capabilityBoundaries": [
+      {
+        "description": "不得由父母、资本或突然出现的专家完成救场",
+        "forbiddenSolutions": [
+          {},
+          {},
+          {},
+          {}
+        ]
+      }
+    ],
+    "promises": [
+      {
+        "id": "P1",
+        "description": "母亲留下的“三短一长”检修记号必须在危机中发挥作用。",
+        "payoffMarkers": [
+          "三短一长"
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "旧事故责任必须得到有证据的更正。",
+        "payoffMarkers": [
+          "更正事故报告",
+          "更正旧事故报告",
+          "责任栏改"
+        ]
+      }
+    ],
+    "goalEvidenceMarkers": [
+      "停机",
+      "更正事故报告"
+    ],
+    "endingEvidenceMarkers": [
+      "接下来的检查"
+    ],
+    "forbiddenDecisiveAdditions": [
+      {},
+      {}
+    ],
+    "climaxEvidenceMarkers": [
+      "旁路锁",
+      "手动绞盘"
+    ],
+    "forbiddenEndingPatterns": [
+      {},
+      {},
+      {},
+      {}
+    ]
+  },
+  "skeleton": {
+    "skeletonId": "skeleton-identity-dock-01",
+    "status": "approved",
+    "kind": "identity-fulfillment",
+    "phases": [
+      {
+        "id": "entry",
+        "purpose": "以临时身份进入码头并建立被轻视的位置。",
+        "weight": 1,
+        "requiredEvents": [
+          {
+            "id": "E1",
+            "description": "周澄以临时检修员身份进入第七码头。",
+            "evidenceMarkers": [
+              "第七码头",
+              "临时检修员"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "recognition",
+        "purpose": "通过母亲留下的检修语言识别风险。",
+        "weight": 1.2,
+        "requiredEvents": [
+          {
+            "id": "E2",
+            "description": "识别三短一长记号与异常振动。",
+            "evidenceMarkers": [
+              "三短一长",
+              "异常振动"
+            ]
+          },
+          {
+            "id": "E3",
+            "description": "负责人在不知道真实身份时拒绝停机。",
+            "evidenceMarkers": [
+              "不停机",
+              "不能停机"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "climax",
+        "purpose": "主角用既有技能亲自完成锁止。",
+        "weight": 1.6,
+        "requiredEvents": [
+          {
+            "id": "E4",
+            "description": "使用旁路锁和手动绞盘解除危险。",
+            "evidenceMarkers": [
+              "旁路锁",
+              "手动绞盘"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "payoff",
+        "purpose": "身份和旧事故真相在行动之后兑现。",
+        "weight": 1,
+        "requiredEvents": [
+          {
+            "id": "E5",
+            "description": "周澄在事后主动公开与周芩的关系。",
+            "evidenceMarkers": [
+              "周芩是我母亲",
+              "我是周芩的女儿"
+            ]
+          },
+          {
+            "id": "E6",
+            "description": "旧事故报告被更正并完整收束。",
+            "evidenceMarkers": [
+              "更正事故报告",
+              "更正旧事故报告",
+              "责任栏改"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "characters": [
+    {
+      "name": "周澄",
+      "role": "主角",
+      "knowledge": [
+        "旧检修册的符号含义",
+        "基础门机结构"
+      ]
+    },
+    {
+      "name": "罗主任",
+      "role": "码头负责人",
+      "knowledge": [
+        "生产计划",
+        "旧事故公开结论"
+      ],
+      "unknown": [
+        "周澄的真实身份"
+      ]
+    },
+    {
+      "name": "阿全",
+      "role": "门机司机",
+      "knowledge": [
+        "现场异响"
+      ]
+    }
+  ],
+  "initialFacts": [
+    "旧检修册由周澄进入故事前合法持有",
+    "暴雨将在夜班期间抵达",
+    "七号门机存在长期未解决的振动"
+  ],
+  "knowledgeBoundaries": [
+    "罗主任在高潮完成前不知道周澄与周芩的关系。"
+  ],
+  "promisesAndAnchors": [
+    "三短一长的铅笔记号",
+    "被雨浸湿的母亲工牌",
+    "事故报告上的责任栏"
+  ],
+  "voiceBrief": {
+    "person": "第二人称近距离",
+    "audienceInformationPosition": "观众与周澄同步知道身份，罗主任晚于观众得知",
+    "tone": "冷峻、克制，有工业现场的触感",
+    "narrativeDistance": "贴近主角感官，但不进入其他人物内心",
+    "dialogueStrategy": "短句、高压环境下以行动打断对白",
+    "timeCompressionStrategy": "夜班单线推进，关键操作不跳步",
+    "endingEffect": "身份在能力兑现后落地，情绪闭合，不追加悬念"
+  },
+  "recentRepetitionProblems": [
+    "避免以镜中自我介绍开场",
+    "避免结尾使用“这一刻你终于明白”"
+  ],
+  "targetLength": 1600,
+  "authorRequirements": "系列句式“今天你体验的身份是……”可使用；不把身份本身写成通行证。"
+}

@@ -1,0 +1,228 @@
+{
+  "packetVersion": "0.1",
+  "routeContract": {
+    "routeId": "route-growth-bridge-01",
+    "protagonist": {
+      "name": "江禾",
+      "identity": "从山村风速记录员成长为索桥工程师的女孩"
+    },
+    "centralGoal": "用长期积累的观测和工程能力解决故乡索桥的风振风险。",
+    "ending": "桥在台风中被安全关闭并完成加固，江禾留下公开的巡检方法，村民重新通行。",
+    "climaxResolution": "江禾依据自己的十二年风速记录、失败试验和现场计算调整阻尼索。",
+    "knowledgeBoundaries": [
+      {
+        "subject": "县工程队",
+        "fact": "江禾掌握针对这座桥的相位差模型",
+        "unknownUntil": "江禾在封桥会议上展示记录和试验",
+        "forbiddenClaims": [
+          {}
+        ],
+        "allowedRevealMarkers": [
+          "摊开十二年的记录",
+          "相位差模型"
+        ]
+      }
+    ],
+    "capabilityBoundaries": [
+      {
+        "description": "高潮不得由父母、导师或外地专家代替江禾完成",
+        "forbiddenSolutions": [
+          {},
+          {},
+          {},
+          {}
+        ]
+      }
+    ],
+    "promises": [
+      {
+        "id": "P1",
+        "description": "童年记录风的习惯必须成为高潮解决依据。",
+        "payoffMarkers": [
+          "十二年的记录",
+          "十二年风速记录"
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "失败的纸桥与试验过程必须转化为专业能力。",
+        "payoffMarkers": [
+          "第七码试件",
+          "失败试验",
+          "第七次试验"
+        ]
+      }
+    ],
+    "goalEvidenceMarkers": [
+      "封桥",
+      "正式加固"
+    ],
+    "endingEvidenceMarkers": [
+      "任何巡护员都能继续执行"
+    ],
+    "forbiddenDecisiveAdditions": [
+      {},
+      {}
+    ],
+    "climaxEvidenceMarkers": [
+      "相位差",
+      "阻尼索"
+    ],
+    "forbiddenEndingPatterns": [
+      {},
+      {},
+      {},
+      {}
+    ]
+  },
+  "skeleton": {
+    "skeletonId": "skeleton-growth-bridge-01",
+    "status": "approved",
+    "kind": "long-term-growth",
+    "phases": [
+      {
+        "id": "seed",
+        "purpose": "建立童年观风与守桥动机。",
+        "weight": 0.9,
+        "requiredEvents": [
+          {
+            "id": "G1",
+            "description": "江禾在山口记录风速和桥索声音。",
+            "evidenceMarkers": [
+              "风速本",
+              "记录风速"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "practice",
+        "purpose": "呈现跨年学习、失败与修正，不把成长一句带过。",
+        "weight": 1.5,
+        "requiredEvents": [
+          {
+            "id": "G2",
+            "description": "经历纸桥、试件或模型的多次失败。",
+            "evidenceMarkers": [
+              "第七码试件",
+              "第七次试验",
+              "失败试验"
+            ]
+          },
+          {
+            "id": "G3",
+            "description": "离乡学习后持续保留故乡观测。",
+            "evidenceMarkers": [
+              "十二年的记录",
+              "十二年风速记录"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "return",
+        "purpose": "带着可验证能力回到故乡但先遭拒绝。",
+        "weight": 1,
+        "requiredEvents": [
+          {
+            "id": "G4",
+            "description": "县工程队最初拒绝封桥或调整方案。",
+            "evidenceMarkers": [
+              "不能封桥",
+              "不同意封桥"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "climax",
+        "purpose": "主角用记录与现场操作解决风振。",
+        "weight": 1.6,
+        "requiredEvents": [
+          {
+            "id": "G5",
+            "description": "江禾计算相位差并调整阻尼索。",
+            "evidenceMarkers": [
+              "相位差",
+              "阻尼索"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "closure",
+        "purpose": "以可持续方法和恢复通行完成成长兑现。",
+        "weight": 1,
+        "requiredEvents": [
+          {
+            "id": "G6",
+            "description": "加固完成并留下公开巡检方法。",
+            "evidenceMarkers": [
+              "巡检表",
+              "重新通行"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "characters": [
+    {
+      "name": "江禾",
+      "role": "主角",
+      "knowledge": [
+        "十二年风速记录",
+        "结构动力学",
+        "现场测量"
+      ]
+    },
+    {
+      "name": "老周",
+      "role": "守桥人",
+      "knowledge": [
+        "桥索声音变化"
+      ],
+      "unknown": [
+        "专业模型细节"
+      ]
+    },
+    {
+      "name": "县工程队负责人",
+      "role": "审批者",
+      "knowledge": [
+        "现行检测报告"
+      ],
+      "unknown": [
+        "江禾私有的长期观测结论"
+      ]
+    }
+  ],
+  "initialFacts": [
+    "江禾童年起自发记录风速",
+    "桥是村庄出行主通道",
+    "她的父母没有工程资源"
+  ],
+  "knowledgeBoundaries": [
+    "工程队只能在江禾展示记录后知道相位差模型。"
+  ],
+  "promisesAndAnchors": [
+    "起毛边的风速本",
+    "失败的第七码试件",
+    "桥索发出的低音"
+  ],
+  "voiceBrief": {
+    "person": "第三人称有限视角",
+    "audienceInformationPosition": "观众始终跟随江禾，先于村民理解长期记录的价值",
+    "tone": "朴素、坚韧，时间跨度大但不煽情",
+    "narrativeDistance": "在关键失败和现场操作时贴近，在年份跨越时适度拉远",
+    "dialogueStrategy": "对白承担阻力、方法校验与关系变化，不重复旁白",
+    "timeCompressionStrategy": "以代表性失败和记录物串联十二年，保留必要成长过程",
+    "endingEffect": "能力被公共方法继承，回到日常通行的完整收束"
+  },
+  "recentRepetitionProblems": [
+    "避免用身份揭晓驱动高潮",
+    "避免每年都写成等长段落"
+  ],
+  "targetLength": 1700,
+  "authorRequirements": "不写父母出钱请专家；不把十二年浓缩成一句“她终于学会了”。"
+}

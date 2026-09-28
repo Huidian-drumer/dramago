@@ -83,4 +83,3 @@ pnpm db:validate
 ## License
 
 [MIT](LICENSE)
-

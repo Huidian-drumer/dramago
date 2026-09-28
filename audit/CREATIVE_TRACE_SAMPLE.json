@@ -1,0 +1,1397 @@
+[
+  {
+    "task_id": "task_b70a9bedb55848f58e0f4ffceb0a79b9",
+    "operation": "CREATE",
+    "source_version_id": null,
+    "target_scope": "full",
+    "selection_range": null,
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 7
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 7
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "MODEL_FULL_REPLACE",
+    "output_kind": "full",
+    "candidate_content_hash": "90f48d2d63af45b7d05fc7398b67113e2c08d3f155069dd3cc4ed0c2fb60213c",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "passed",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_f9df8b371759452fa2aab2fb21719db4",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_bcdc6aa1b64f4763baa00bb21010c1ea",
+    "operation": "EXPAND",
+    "source_version_id": "ver_63d3fb73a06f46389080668c462d2fc1",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 3,
+      "end": 7,
+      "length": 4
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 5
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 5
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "candidate_content_hash": "49440c129dc4e18ca93ce150c1f4f8e5f125780b1e47c69900d4e45ed407b4e2",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "passed",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "SELECTION_SCOPE",
+        "status": "pass"
+      },
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_cc64fe8f4c2144a6bb3eaf7556b6b5bf",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_cc8750d1714049ec921f982bec9f5831",
+    "operation": "REWRITE",
+    "source_version_id": "ver_63d3fb73a06f46389080668c462d2fc1",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 3,
+      "end": 7,
+      "length": 4
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 5
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 5
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "candidate_content_hash": "52871d6372eaf5947fccca183226fef00284713912d2a4b921dcef0484845125",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "passed",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "SELECTION_SCOPE",
+        "status": "pass"
+      },
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_1ed44842f3704c25adf2075fc52134a3",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_d779e5c35e694dfe84671d884dc5b57b",
+    "operation": "CONTINUE",
+    "source_version_id": "ver_63d3fb73a06f46389080668c462d2fc1",
+    "target_scope": "next_segment",
+    "selection_range": null,
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 5
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 5
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_APPEND",
+    "output_kind": "continuation",
+    "candidate_content_hash": "5566a804b88091484b90e6e2ed7abf69bc70973bb5a8c15206628ce4b9586965",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "passed",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "CONTINUATION_PRESERVES_SOURCE",
+        "status": "pass"
+      },
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_bd614fc8f48a4173bf495f82888bd95c",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_c2c3730d2ce44e04b74ea26928a7faab",
+    "operation": "REWRITE",
+    "source_version_id": "ver_8e60c219f3794ce8aa90620566e89534",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 8,
+      "end": 14,
+      "length": 6
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 6
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 6
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "candidate_content_hash": "f2b717ccd2a042bab539fa1b9adf14a7130622e8d364d6997feddaad3ea33020",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "passed",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "SELECTION_SCOPE",
+        "status": "pass"
+      },
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_d152a6759e704c858058db2fb212427c",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_13bf9867e56245a6a8ae56d41d671e8d",
+    "operation": "EXPAND",
+    "source_version_id": "ver_15da8cc0ca4c44caa3c3486c09d9d621",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 12,
+      "end": 20,
+      "length": 8
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 8
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 8
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "candidate_content_hash": "692f3b1ba7abe9f06f82bea414720e974e635bf467308749dd8c56d789f3174e",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "blocked",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "SELECTION_SCOPE",
+        "status": "pass"
+      },
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "fail"
+      },
+      {
+        "check": "STORY_FACT_CONFLICT",
+        "status": "fail"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_b06479e527be4612b934f39fa710a4bc",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_fcbcaf59f21b4fffac3392aa54d841c5",
+    "operation": "REWRITE",
+    "source_version_id": "ver_df55be118cad4c208ca7a9e32c273bf4",
+    "target_scope": "full",
+    "selection_range": null,
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 23
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 23
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "MODEL_FULL_REPLACE",
+    "output_kind": "full",
+    "candidate_content_hash": "9d810fc327e4f044b99689f1d571da04ae2c82b71e997fa3d27d6b93eb26a1f0",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "passed",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_af92d0b61d5343728e44f3523faf9459",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_c146527263ff40f7807b61ac1d532255",
+    "operation": "EXPAND",
+    "source_version_id": "ver_a1aeb0acd64948119394f409ce554f60",
+    "target_scope": "full",
+    "selection_range": null,
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 7
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 7
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "MODEL_FULL_REPLACE",
+    "output_kind": "full",
+    "candidate_content_hash": "12c099e67516f5f77f53b95d007b6ff875070683443137b63fde115b4db2eda0",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "passed",
+    "source_is_current": false,
+    "validator_results": [
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_f1eb77bebacb4916b64f8e667733c7ad",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_3ac2fb8f78954933840f08d40d30f22f",
+    "operation": "CONTINUE",
+    "source_version_id": "ver_5f165bf3552e4130b1f1f7d52ca16761",
+    "target_scope": "next_segment",
+    "selection_range": null,
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 5
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 5
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": null,
+    "model": null,
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_APPEND",
+    "output_kind": "continuation",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "failed",
+    "source_is_current": null,
+    "validator_results": [],
+    "candidate_version_id": null,
+    "adopt_status": "failed"
+  },
+  {
+    "task_id": "task_df0003eb01a9441795e13c3acfb6e006",
+    "operation": "CONTINUE",
+    "source_version_id": "ver_5f165bf3552e4130b1f1f7d52ca16761",
+    "target_scope": "next_segment",
+    "selection_range": null,
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 5
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 5
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_APPEND",
+    "output_kind": "continuation",
+    "candidate_content_hash": "918ad4d5569d2dc3774807b08c35b9d1bcebbc80ce213bb03a67497d8693e09c",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "passed",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "CONTINUATION_PRESERVES_SOURCE",
+        "status": "pass"
+      },
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_ad277ae569c3497eba92c75956cc64e1",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_5b2b4db79d4b4a618fcb0997ac96f657",
+    "operation": "EXPAND",
+    "source_version_id": "ver_fe74ae47422348ee9e584c86652d34a7",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 3,
+      "end": 24,
+      "length": 21
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 6
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 6
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": null,
+    "model": null,
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "failed",
+    "source_is_current": null,
+    "validator_results": [],
+    "candidate_version_id": null,
+    "adopt_status": "failed"
+  },
+  {
+    "task_id": "task_1454002965bd41dc99305c4387e816ca",
+    "operation": "REWRITE",
+    "source_version_id": "ver_1b6f1f1d70b849daad6bd3779ec98da3",
+    "target_scope": "full",
+    "selection_range": null,
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 14
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 14
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "MODEL_FULL_REPLACE",
+    "output_kind": "full",
+    "candidate_content_hash": "abf683ad06c29525d2a347e824ed711e18c7a35f00445acfc81405d460051c24",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "passed",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_b1ab3f084362449ca3c86a61ce1657e9",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_dd338d9a646343e48cb9517862b7f960",
+    "operation": "REWRITE",
+    "source_version_id": "ver_87a6ce334f324e1c8aa70345e3e524d5",
+    "target_scope": "full",
+    "selection_range": null,
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 14
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 14
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "MODEL_FULL_REPLACE",
+    "output_kind": "full",
+    "candidate_content_hash": "abf683ad06c29525d2a347e824ed711e18c7a35f00445acfc81405d460051c24",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "blocked",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "fail"
+      },
+      {
+        "check": "TIMELINE_CONFLICT",
+        "status": "fail"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_01a2eec54d8043678488a9aa04bfb90c",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_7e9cd715ca5e4bbfb09dfb98b7cbb9cd",
+    "operation": "REWRITE",
+    "source_version_id": "ver_8336c4ee036c48d8acb5753a3834e278",
+    "target_scope": "full",
+    "selection_range": null,
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 5
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 5
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "MODEL_FULL_REPLACE",
+    "output_kind": "full",
+    "candidate_content_hash": "6dd927cd81a150869de80994ee288e25626342810c3ad0abafc34e354e5cea84",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "passed",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_b5fc3ef9abed47278cc68f1b0d286b39",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_6d8a09f8ef9241abb771ec4ef6543be9",
+    "operation": "REWRITE",
+    "source_version_id": "ver_1ef61f291c2846cda521c6e6e268e835",
+    "target_scope": "full",
+    "selection_range": null,
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 9
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 9
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "MODEL_FULL_REPLACE",
+    "output_kind": "full",
+    "candidate_content_hash": "1caa9991a98ec1b56258044d077ab0a50c56f8811c5dab3b284e95a3cc1031b8",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "passed",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_3b6d85b0cae04e6b82e1bdbeb1373a4a",
+    "adopt_status": "adopted"
+  },
+  {
+    "task_id": "task_28049170335e4f0c8540dfb311d4f212",
+    "operation": "REWRITE",
+    "source_version_id": "ver_06693b6bb5ef44cfaa0aec01e2627f6f",
+    "target_scope": "full",
+    "selection_range": null,
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 5
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 5
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "MODEL_FULL_REPLACE",
+    "output_kind": "full",
+    "candidate_content_hash": "f182c72281fffe3877ed28ff0fc041af2afb111501c2a3eb62d6bb13645e20d4",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "unavailable",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "unavailable"
+      }
+    ],
+    "candidate_version_id": "ver_341cc56a89b74a20ab054068d46e28b6",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_73f499a5f1e94cf3a2107f0bab54eb3b",
+    "operation": "EXPAND",
+    "source_version_id": "ver_612ab234b97a447790b6d6d4d2873045",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 3,
+      "end": 8,
+      "length": 5
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 19
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 19
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "candidate_content_hash": "a63089f07f7d1a2c43ebebaa1e96ce4126c54269e26f33f7c3e74b52af271366",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "passed",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "SELECTION_SCOPE",
+        "status": "pass"
+      },
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "pass"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_99745ad87cc04182afbd67813476eb0f",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_4435532775f44d74bb3421fed7a3f476",
+    "operation": "EXPAND",
+    "source_version_id": "ver_dabe9e229fdb48d8887b41af9cd22930",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 3,
+      "end": 8,
+      "length": 5
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 24
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 24
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": null,
+    "model": null,
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "failed",
+    "source_is_current": null,
+    "validator_results": [],
+    "candidate_version_id": null,
+    "adopt_status": "failed"
+  },
+  {
+    "task_id": "task_6486bf62a02c4bcd815438476831759e",
+    "operation": "EXPAND",
+    "source_version_id": "ver_0585813720274082809d2321a9c80240",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 3,
+      "end": 8,
+      "length": 5
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 20
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 20
+      }
+    ],
+    "hard_preserve": [
+      {
+        "redacted": true,
+        "length": 5
+      }
+    ],
+    "soft_preserve": [],
+    "provider": "openai-compatible",
+    "model": "audit-model",
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "candidate_content_hash": "1832c605baab814366b0da52631dbe57319810681aa5265c3f96ae7055c94bd5",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "blocked",
+    "source_is_current": true,
+    "validator_results": [
+      {
+        "check": "HARD_PRESERVE_LITERAL",
+        "status": "unassessed"
+      },
+      {
+        "check": "SELECTION_SCOPE",
+        "status": "pass"
+      },
+      {
+        "check": "AUTHOR_INTENT_AND_QUALITY",
+        "status": "unassessed"
+      },
+      {
+        "check": "SEMANTIC_VALIDATION",
+        "status": "pass"
+      },
+      {
+        "check": "REQUIRED_OUTCOMES",
+        "status": "pass"
+      },
+      {
+        "check": "HARD_PRESERVE",
+        "status": "fail"
+      },
+      {
+        "check": "OPERATION_COMPLETED",
+        "status": "pass"
+      }
+    ],
+    "candidate_version_id": "ver_12a5e044d5c24f8084d3a46de55d48ee",
+    "adopt_status": "candidate"
+  },
+  {
+    "task_id": "task_0f296d510c90433e919583f7f087f0a9",
+    "operation": "EXPAND",
+    "source_version_id": "ver_6797353e2b4247fea62e006f8bad307b",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 3,
+      "end": 8,
+      "length": 5
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 12
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 12
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": null,
+    "model": null,
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "failed",
+    "source_is_current": null,
+    "validator_results": [],
+    "candidate_version_id": null,
+    "adopt_status": "failed"
+  },
+  {
+    "task_id": "task_8198568d4db64af2b4a38a67d83d606e",
+    "operation": "EXPAND",
+    "source_version_id": "ver_a476b53458c8469196dd6415df7533ec",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 3,
+      "end": 8,
+      "length": 5
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 16
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 16
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": null,
+    "model": null,
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "failed",
+    "source_is_current": null,
+    "validator_results": [],
+    "candidate_version_id": null,
+    "adopt_status": "failed"
+  },
+  {
+    "task_id": "task_b2684c42eb6148b282f68b51eb1dcd61",
+    "operation": "EXPAND",
+    "source_version_id": "ver_ac4e3a20938d4650939fc5592e09ea79",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 3,
+      "end": 8,
+      "length": 5
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 20
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 20
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": null,
+    "model": null,
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "failed",
+    "source_is_current": null,
+    "validator_results": [],
+    "candidate_version_id": null,
+    "adopt_status": "failed"
+  },
+  {
+    "task_id": "task_231640038f594a58b73082c4a4c109c8",
+    "operation": "EXPAND",
+    "source_version_id": "ver_912423a5c5634759b80df987967b171f",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 3,
+      "end": 8,
+      "length": 5
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 17
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 17
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": null,
+    "model": null,
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "failed",
+    "source_is_current": null,
+    "validator_results": [],
+    "candidate_version_id": null,
+    "adopt_status": "failed"
+  },
+  {
+    "task_id": "task_55d7c716fb834f3b8f4bc0c517b3474d",
+    "operation": "EXPAND",
+    "source_version_id": "ver_f88b8cf7a2c64e20aa299050b5e3ab81",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 3,
+      "end": 8,
+      "length": 5
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 16
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 16
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": null,
+    "model": null,
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "failed",
+    "source_is_current": null,
+    "validator_results": [],
+    "candidate_version_id": null,
+    "adopt_status": "failed"
+  },
+  {
+    "task_id": "task_6d843000c1bf4d11b6972c7b39fce2e3",
+    "operation": "EXPAND",
+    "source_version_id": "ver_74276d91000349a090952c544e5addd9",
+    "target_scope": "selection",
+    "selection_range": {
+      "start": 3,
+      "end": 8,
+      "length": 5
+    },
+    "creative_brief": {
+      "user_instruction": {
+        "redacted": true,
+        "length": 17
+      },
+      "output_preferences": {
+        "target_length": 1200,
+        "person": "第三人称",
+        "tone": "克制",
+        "series_opening": false
+      }
+    },
+    "required_outcomes": [
+      {
+        "redacted": true,
+        "length": 17
+      }
+    ],
+    "hard_preserve": [],
+    "soft_preserve": [],
+    "provider": null,
+    "model": null,
+    "prompt_template_id": "creative-writer-v2",
+    "merge_strategy": "PROGRAM_REPLACE_RANGE",
+    "output_kind": "segment",
+    "validator_version": "l2-semantic-v1",
+    "validation_status": "failed",
+    "source_is_current": null,
+    "validator_results": [],
+    "candidate_version_id": null,
+    "adopt_status": "failed"
+  }
+]

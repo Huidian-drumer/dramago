@@ -1,0 +1,231 @@
+{
+  "packetVersion": "0.1",
+  "routeContract": {
+    "routeId": "route-relationship-winter-01",
+    "protagonist": {
+      "name": "许棠",
+      "identity": "县城旧物代送员；与弟弟断联三年的姐姐"
+    },
+    "centralGoal": "把父亲修好的旧保温桶亲手交给弟弟，并说清三年前各自误解的真相。",
+    "ending": "姐弟共同完成父亲留下的冬至送饭约定，关闭旧屋，关系获得明确而克制的修复。",
+    "climaxResolution": "许棠主动承认自己当年的逃避，许岑也说出隐瞒；两人通过对话与共同完成送饭处理关系。",
+    "knowledgeBoundaries": [
+      {
+        "subject": "许岑",
+        "fact": "父亲生前已经修好保温桶并留下道歉字条",
+        "unknownUntil": "许棠在末班车上打开夹层",
+        "forbiddenClaims": [
+          {}
+        ],
+        "allowedRevealMarkers": [
+          "打开夹层",
+          "道歉字条"
+        ]
+      }
+    ],
+    "capabilityBoundaries": [
+      {
+        "description": "不得由亲戚调停、遗产或神秘来信替姐弟完成和解",
+        "forbiddenSolutions": [
+          {},
+          {},
+          {}
+        ]
+      }
+    ],
+    "promises": [
+      {
+        "id": "P1",
+        "description": "父亲每年冬至送饭的约定必须由姐弟亲手完成。",
+        "payoffMarkers": [
+          "一起送到值班室",
+          "把热饭送到值班室"
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "三年前的误解必须被双方说清，而非旁白概括。",
+        "payoffMarkers": [
+          "我不是怪你",
+          "我也没问你"
+        ]
+      }
+    ],
+    "goalEvidenceMarkers": [
+      "保温桶",
+      "送到值班室"
+    ],
+    "endingEvidenceMarkers": [
+      "一个明确的下一次见面"
+    ],
+    "forbiddenDecisiveAdditions": [
+      {},
+      {}
+    ],
+    "climaxEvidenceMarkers": [
+      "打开夹层",
+      "一起送到值班室",
+      "把热饭送到值班室"
+    ],
+    "forbiddenEndingPatterns": [
+      {},
+      {},
+      {},
+      {}
+    ]
+  },
+  "skeleton": {
+    "skeletonId": "skeleton-relationship-winter-01",
+    "status": "approved",
+    "kind": "relationship-closure",
+    "phases": [
+      {
+        "id": "delivery",
+        "purpose": "以最后一件旧物迫使断联姐弟再次同行。",
+        "weight": 1,
+        "requiredEvents": [
+          {
+            "id": "R1",
+            "description": "许棠带着修好的保温桶上末班车。",
+            "evidenceMarkers": [
+              "末班车",
+              "保温桶"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "friction",
+        "purpose": "通过具体旧事暴露双方误解。",
+        "weight": 1.4,
+        "requiredEvents": [
+          {
+            "id": "R2",
+            "description": "许岑上车后与许棠发生克制冲突。",
+            "evidenceMarkers": [
+              "许岑上车",
+              "三年没见"
+            ]
+          },
+          {
+            "id": "R3",
+            "description": "双方各自说出一部分当年真相。",
+            "evidenceMarkers": [
+              "我不是怪你",
+              "我也没问你"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "reveal",
+        "purpose": "在两人已开始诚实后才发现父亲字条。",
+        "weight": 1,
+        "requiredEvents": [
+          {
+            "id": "R4",
+            "description": "在末班车上打开夹层发现道歉字条。",
+            "evidenceMarkers": [
+              "打开夹层",
+              "道歉字条"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "choice",
+        "purpose": "姐弟以共同完成具体行动代替口头和好。",
+        "weight": 1.4,
+        "requiredEvents": [
+          {
+            "id": "R5",
+            "description": "两人一起把热饭送到父亲从前的值班室。",
+            "evidenceMarkers": [
+              "一起送到值班室",
+              "把热饭送到值班室"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "closure",
+        "purpose": "关闭旧屋并给关系明确落点。",
+        "weight": 1,
+        "requiredEvents": [
+          {
+            "id": "R6",
+            "description": "两人共同锁好旧屋，约定来年由自己做饭。",
+            "evidenceMarkers": [
+              "锁好旧屋",
+              "明年我们自己做"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "characters": [
+    {
+      "name": "许棠",
+      "role": "主角",
+      "knowledge": [
+        "父亲去世前修过保温桶",
+        "自己三年前离家的真实原因"
+      ],
+      "unknown": [
+        "夹层里有字条"
+      ]
+    },
+    {
+      "name": "许岑",
+      "role": "弟弟",
+      "knowledge": [
+        "父亲最后住院时的情况",
+        "自己没有转达电话"
+      ],
+      "unknown": [
+        "保温桶已修好",
+        "夹层里有字条"
+      ]
+    },
+    {
+      "name": "老秦",
+      "role": "末班车司机",
+      "knowledge": [
+        "姐弟多年未同时出现"
+      ],
+      "unknown": [
+        "家庭争执细节"
+      ]
+    }
+  ],
+  "initialFacts": [
+    "父亲已经去世",
+    "保温桶在父亲生前修好",
+    "姐弟断联三年",
+    "冬至夜末班车仍经过旧值班室"
+  ],
+  "knowledgeBoundaries": [
+    "许岑在夹层被打开前不知道字条；老秦不知道家庭争执细节。"
+  ],
+  "promisesAndAnchors": [
+    "掉漆的保温桶",
+    "末班车最后一排",
+    "父亲值班室的旧门锁"
+  ],
+  "voiceBrief": {
+    "person": "第三人称双人近景，以许棠为主",
+    "audienceInformationPosition": "观众知道姐弟各自有隐瞒，但与两人同时发现字条",
+    "tone": "安静、生活化、冬夜质感",
+    "narrativeDistance": "贴近动作和停顿，不替人物提前总结感情",
+    "dialogueStrategy": "对白逐步纠正误解，每句都改变关系或行动",
+    "timeCompressionStrategy": "一趟末班车与一次送饭连续完成，不跳过关键对话",
+    "endingEffect": "以共同动作完成关系修复，明确闭合，不留悬疑尾巴"
+  },
+  "recentRepetitionProblems": [
+    "避免事故式高潮",
+    "避免用“原来一切都是误会”概括"
+  ],
+  "targetLength": 1500,
+  "authorRequirements": "结尾完整收束；不加陌生短信、遗产秘密或父亲未死等反转。"
+}

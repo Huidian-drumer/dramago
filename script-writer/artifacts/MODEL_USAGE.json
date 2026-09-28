@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "contentSource": "codex-current-session",
+  "generationMode": "EXTERNAL_MODEL_SESSION_INPUT",
+  "productTextProviderCalls": 0,
+  "externalSessionDrafts": 3,
+  "modelIdentifier": null,
+  "inputTokens": null,
+  "outputTokens": null,
+  "cost": null,
+  "costCurrency": null,
+  "autoRepairCalls": 0,
+  "note": "The runtime did not return model usage or cost. Values are intentionally not estimated."
+}

@@ -1,0 +1,85 @@
+{
+  "reportVersion": "0.1",
+  "draftHash": "79ce01b092e066cc04e332ab64e3ca88a80f052359b4068c3a062ddfd5d8c9fc",
+  "targetCharacters": 1700,
+  "actualCharacters": 1681,
+  "estimatedDuration": null,
+  "structuralIssues": [],
+  "expressionIssues": [],
+  "repairRouting": "NONE",
+  "extracted": {
+    "events": [
+      {
+        "phaseId": "seed",
+        "eventId": "G1",
+        "observedText": "下树梢方向、河面波纹和桥索声音。她的风速本没有整齐的表格，页边画满长短不同的线：短线是桥面轻颤，长线是主索开始摆动。别人把它当小孩的涂画，老周却每个月给她换一截削好的铅笔。 十四",
+        "location": {
+          "line": 1,
+          "paragraph": 1
+        },
+        "position": 50
+      },
+      {
+        "phaseId": "practice",
+        "eventId": "G2",
+        "observedText": "支点，换掉胶水，把每一次失败都编号。第七码试件没有断，但它摆得越来越大，直到把固定夹从桌边拽了下来。 物理老师问她为什么非要让纸桥吹风。她说，因为村里的桥不是被重量压坏的，它总是",
+        "location": {
+          "line": 3,
+          "paragraph": 2
+        },
+        "position": 230
+      },
+      {
+        "phaseId": "climax",
+        "eventId": "G5",
+        "observedText": "是一句“风大”，而是一组会逐步放大的相位差。 十二年的记录终于有了形状。她把纸桥断口、旧风速本和数万行数据放在同一张时间轴上，完成毕业设计，又在检测公司从最普通的现场员做起。她学",
+        "location": {
+          "line": 9,
+          "paragraph": 5
+        },
+        "position": 578
+      },
+      {
+        "phaseId": "practice",
+        "eventId": "G3",
+        "observedText": "”，而是一组会逐步放大的相位差。 十二年的记录终于有了形状。她把纸桥断口、旧风速本和数万行数据放在同一张时间轴上，完成毕业设计，又在检测公司从最普通的现场员做起。她学会辨认螺栓松",
+        "location": {
+          "line": 11,
+          "paragraph": 6
+        },
+        "position": 584
+      },
+      {
+        "phaseId": "return",
+        "eventId": "G4",
+        "observedText": "索桥。负责人翻完现行报告，说运输旺季不能封桥：“强度合格，不能封桥。你拿的是十几年前的手抄记录，不是法定检测结果。” 江禾没有搬出学校和公司的名字压人。她在守桥屋里摊开十二年的记",
+        "location": {
+          "line": 15,
+          "paragraph": 8
+        },
+        "position": 841
+      },
+      {
+        "phaseId": "closure",
+        "eventId": "G6",
+        "observedText": "控范围。江禾没有宣布桥已经安全，只在巡检表上写下：临时稳定，继续封闭，等待正式加固。 台风过去一周，新的阻尼装置安装完成。工程队把江禾的长期观测纳入复核依据，也承认原报告只检查了",
+        "location": {
+          "line": 27,
+          "paragraph": 14
+        },
+        "position": 1470
+      }
+    ],
+    "knowledgeChanges": [
+      {
+        "subject": "县工程队",
+        "location": {
+          "line": 17,
+          "paragraph": 9
+        },
+        "position": 906
+      }
+    ]
+  },
+  "passed": true
+}

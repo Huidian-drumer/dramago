@@ -1,0 +1,32 @@
+{
+  "issues": [],
+  "comparisons": [
+    {
+      "pair": [
+        "identity-fulfillment",
+        "long-term-growth"
+      ],
+      "openingSimilarity": 0,
+      "endingSimilarity": 0,
+      "structureSame": false
+    },
+    {
+      "pair": [
+        "identity-fulfillment",
+        "relationship-closure"
+      ],
+      "openingSimilarity": 0.006666666666666667,
+      "endingSimilarity": 0.002785515320334262,
+      "structureSame": false
+    },
+    {
+      "pair": [
+        "long-term-growth",
+        "relationship-closure"
+      ],
+      "openingSimilarity": 0,
+      "endingSimilarity": 0.0028089887640449437,
+      "structureSame": false
+    }
+  ]
+}

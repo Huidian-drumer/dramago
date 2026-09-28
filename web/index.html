@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f0e8">
+  <meta name="description" content="开戏 DramaGo AI 短剧创作工作台：生成、扩写、改写与续写完整文字短剧。">
+  <title>开戏 DramaGo｜AI 短剧创作工作台</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23231f1a'/%3E%3Cpath d='M16 17h17c10 0 16 6 16 15S43 47 33 47H16V17Zm9 8v14h8c4 0 7-2 7-7s-3-7-7-7h-8Z' fill='%23f5f0e8'/%3E%3Cpath d='m29 27 8 5-8 5V27Z' fill='%23d65b44'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/workbench.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="开戏 DramaGo 创作工作台首页">
+      <span class="brand-mark">D</span>
+      <span><strong>开戏 DramaGo</strong><small>AI 短剧创作工作台</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="provider-pill checking" id="providerPill"><i></i><span>检查模型服务</span></span>
+      <a class="quiet-link" href="/experience">导入完整剧本后体验 <em>实验</em></a>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="brief-column">
+      <section class="panel brief-panel">
+        <div class="panel-heading">
+          <div><span class="step">01</span><h1>告诉我你想写什么</h1></div>
+          <p>自然语言就够了，不需要填写复杂设定表。</p>
+        </div>
+
+        <div class="operation-tabs" role="tablist" aria-label="创作操作">
+          <button class="operation active" type="button" data-operation="CREATE" role="tab" aria-selected="true"><b>生成</b><span>完整成篇</span></button>
+          <button class="operation" type="button" data-operation="EXPAND" role="tab" aria-selected="false"><b>扩写</b><span>丰富内容</span></button>
+          <button class="operation" type="button" data-operation="REWRITE" role="tab" aria-selected="false"><b>改写</b><span>定向调整</span></button>
+          <button class="operation" type="button" data-operation="CONTINUE" role="tab" aria-selected="false"><b>续写</b><span>下一段 / 集</span></button>
+        </div>
+
+        <label class="field">
+          <span>背景、人物与已有素材 <small>可选</small></span>
+          <textarea id="contextInput" rows="7" placeholder="例如：现代都市。林晚在婚礼前发现未婚夫与伴娘的背叛证据……"></textarea>
+        </label>
+
+        <label class="field emphasis-field">
+          <span>本次创作要求</span>
+          <textarea id="instructionInput" rows="5" placeholder="写清楚希望发生什么、人物怎么选择、结尾去向。要求足够时会直接创作。"></textarea>
+        </label>
+
+        <label class="field">
+          <span>必须保留 <small>每行一项，可选</small></span>
+          <textarea id="preserveInput" rows="3" placeholder="例如：结尾仍然取消婚礼独自离开"></textarea>
+        </label>
+
+        <details class="advanced">
+          <summary>篇幅与风格</summary>
+          <div class="advanced-grid">
+            <label><span>目标篇幅</span><select id="lengthInput"><option value="1200">约 1200 字</option><option value="2000" selected>约 2000 字</option><option value="3000">约 3000 字</option><option value="5000">约 5000 字</option></select></label>
+            <label><span>叙述人称</span><select id="personInput"><option>第一人称</option><option selected>第二人称</option><option>第三人称</option></select></label>
+            <label class="wide"><span>内容气质</span><input id="toneInput" value="克制、有张力" placeholder="例如：温暖、轻快、冷峻"></label>
+            <label class="wide checkbox"><input id="seriesOpeningInput" type="checkbox"><span>使用“今天体验的身份是……”系列开场</span></label>
+          </div>
+        </details>
+
+        <div class="selection-card" id="selectionCard" hidden>
+          <div><strong>已绑定选区</strong><button id="clearSelection" type="button">清除</button></div>
+          <p id="selectionPreview"></p>
+          <small>选区按当前版本与字符区间定位，不会替换正文里其他相同句子。</small>
+        </div>
+
+        <button class="primary-action" id="generateButton" type="button">
+          <span id="generateLabel">生成完整短剧</span><i aria-hidden="true">↗</i>
+        </button>
+        <p class="form-note" id="formNote">结果先作为候选版本保存，不会直接覆盖当前正文。</p>
+      </section>
+    </aside>
+
+    <section class="manuscript-column">
+      <div class="manuscript-head">
+        <div>
+          <span class="step">02</span>
+          <h2>当前正文</h2>
+          <p><span id="versionLabel">尚未建立版本</span><i>·</i><span id="saveState">输入会暂存在本机</span></p>
+        </div>
+        <div class="editor-actions">
+          <button type="button" id="copyButton">复制</button>
+          <div class="export-menu">
+            <button type="button" id="exportButton" aria-expanded="false">导出⌄</button>
+            <div class="export-options" id="exportOptions" hidden>
+              <button type="button" data-format="txt">TXT</button>
+              <button type="button" data-format="md">Markdown</button>
+            </div>
+          </div>
+          <button class="solid-small" type="button" id="saveButton">保存版本</button>
+        </div>
+      </div>
+
+      <article class="paper">
+        <input class="title-editor" id="titleEditor" value="未命名短剧" aria-label="短剧标题">
+        <div class="ruler"><span id="characterCount">0 字</span><span>选中文字后可直接扩写或改写</span></div>
+        <textarea class="body-editor" id="bodyEditor" spellcheck="false" placeholder="完整正文会出现在这里。你也可以先粘贴已有内容并保存为版本。"></textarea>
+        <div class="selection-toolbar" id="selectionToolbar" hidden>
+          <span id="selectionCount">已选 0 字</span>
+          <button type="button" data-selection-action="EXPAND">扩写这段</button>
+          <button type="button" data-selection-action="REWRITE">改写这段</button>
+        </div>
+      </article>
+
+      <details class="check-panel" id="checkPanel">
+        <summary><span>内容检查</span><b id="checkSummary">尚未检查</b></summary>
+        <div id="checkList" class="check-list"><p class="muted">生成候选版本后，将显示确定性发现、模型判断和人工待验收项。</p></div>
+      </details>
+    </section>
+
+    <aside class="result-column">
+      <section class="panel result-panel">
+        <div class="panel-heading compact">
+          <div><span class="step">03</span><h2>候选结果</h2></div>
+          <span class="candidate-state" id="candidateState">等待创作</span>
+        </div>
+        <div class="result-empty" id="resultEmpty">
+          <div class="empty-glyph">文</div>
+          <strong>新结果不会覆盖原稿</strong>
+          <p>生成、扩写、改写和续写都会先成为候选版本，由你决定是否采用。</p>
+        </div>
+        <div class="candidate" id="candidatePanel" hidden>
+          <div class="candidate-meta"><span id="candidateOperation"></span><span id="candidateModel"></span></div>
+          <h3 id="candidateTitle"></h3>
+          <p class="change-summary" id="changeSummary"></p>
+          <div class="diff-view" id="diffView" hidden>
+            <div><span>修改前</span><p id="beforeText"></p></div>
+            <div><span>修改后</span><p id="afterText"></p></div>
+          </div>
+          <textarea id="candidateBody" class="candidate-body" readonly></textarea>
+          <div class="candidate-actions">
+            <button type="button" id="keepOriginal">保留原版</button>
+            <button type="button" class="primary-mini" id="adoptCandidate">采用此版本</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel versions-panel">
+        <div class="panel-heading compact">
+          <div><span class="step">04</span><h2>版本记录</h2></div>
+          <span id="versionCount">0 个版本</span>
+        </div>
+        <div class="version-list" id="versionList">
+          <p class="muted">采用或手动保存后，可在这里恢复任一版本。</p>
+        </div>
+      </section>
+
+      <section class="status-card" aria-live="polite">
+        <div><span class="status-dot idle" id="statusDot"></span><strong id="statusTitle">准备就绪</strong></div>
+        <p id="statusMessage">填写要求后即可开始。不会显示虚构进度。</p>
+      </section>
+    </aside>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/workbench.js" type="module"></script>
+</body>
+</html>

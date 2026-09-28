@@ -1,0 +1,85 @@
+{
+  "reportVersion": "0.1",
+  "draftHash": "9eea5b38f35d4b12fe76e2b552b9272f8941821af939b577ce5a14a787185614",
+  "targetCharacters": 1600,
+  "actualCharacters": 1542,
+  "estimatedDuration": null,
+  "structuralIssues": [],
+  "expressionIssues": [],
+  "repairRouting": "NONE",
+  "extracted": {
+    "events": [
+      {
+        "phaseId": "entry",
+        "eventId": "E1",
+        "observedText": "你到第七码头时，海上的雨还没压过防波堤。门机的长臂停在铅灰色天幕下，吊着最后一箱冷链货。罗主任把临时证递给你，只说了两句话：“跟着阿全，别碰控制柜。",
+        "location": {
+          "line": 1,
+          "paragraph": 1
+        },
+        "position": 2
+      },
+      {
+        "phaseId": "recognition",
+        "eventId": "E3",
+        "observedText": "两句话：“跟着阿全，别碰控制柜。今晚不能停机。” 胸牌上只写着周澄，没有人多看第二眼。三年前那场吊臂坠落事故以后，母亲周芩的名字倒是人人都记得。公开结论说她漏做了一次关键检查，事",
+        "location": {
+          "line": 1,
+          "paragraph": 1
+        },
+        "position": 76
+      },
+      {
+        "phaseId": "recognition",
+        "eventId": "E2",
+        "observedText": "指骨。你让阿全空载点动一次，声音变成三短一长。 旧检修册第十七页，母亲在轴承示意图旁也画过三短一长。不是故障代码，是她自己的速记：外圈位移，制动回弹迟滞，禁止带载回转。 “先停",
+        "location": {
+          "line": 5,
+          "paragraph": 3
+        },
+        "position": 308
+      },
+      {
+        "phaseId": "climax",
+        "eventId": "E4",
+        "observedText": "级回转电源，释放备用液压，再用侧舱的手动绞盘把旁路锁送进锁槽。步骤旁边只有一句话——先听见长音，再落锁。 侧舱在门机外侧，梯板已经被雨打得发亮。罗主任拦了一下：“那是旧图，旁路早",
+        "location": {
+          "line": 19,
+          "paragraph": 10
+        },
+        "position": 772
+      },
+      {
+        "phaseId": "payoff",
+        "eventId": "E5",
+        "observedText": "被雨浸湿的旧工牌，放在封板上。 “周芩是我母亲。”你说，“但今晚让门机停下来的，不是这个名字。是她三年前报过的回弹迟滞，一直没有被写进公开报告。” 罗主任没有立刻回答。他调出旧",
+        "location": {
+          "line": 35,
+          "paragraph": 18
+        },
+        "position": 1264
+      },
+      {
+        "phaseId": "payoff",
+        "eventId": "E6",
+        "observedText": "那句沿用了三年的“检修人员漏检”，在责任栏改成“停机申请被违规驳回”。他把文件推到你面前：“我会申请更正事故报告。不是因为你是谁，是因为这些证据该被放回原来的位置。” 你没有替母",
+        "location": {
+          "line": 39,
+          "paragraph": 20
+        },
+        "position": 1499
+      }
+    ],
+    "knowledgeChanges": [
+      {
+        "subject": "罗主任",
+        "location": {
+          "line": 35,
+          "paragraph": 18
+        },
+        "position": 1264
+      }
+    ]
+  },
+  "passed": true
+}

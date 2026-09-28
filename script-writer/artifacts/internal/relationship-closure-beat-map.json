@@ -1,0 +1,76 @@
+{
+  "draftHash": "7abe115bb9fe974cd85313a9139d4e1af1cb1b440559d8a322f3520ae83e2c58",
+  "mappingSource": "independent post-draft extraction",
+  "extractedEvents": [
+    {
+      "phaseId": "delivery",
+      "eventId": "R1",
+      "observedText": "许棠把保温桶放在末班车最后一排，用围巾垫住桶底，免得它随着刹车一路磕响。桶身掉了两块红漆，提梁上缠着父亲常用的黑胶布。父亲去世后，她替旧屋清点东西，这",
+      "location": {
+        "line": 1,
+        "paragraph": 1
+      },
+      "position": 3
+    },
+    {
+      "phaseId": "friction",
+      "eventId": "R2",
+      "observedText": "已经空了。 末班车开到老食品厂站，许岑上车。他比记忆里瘦，肩上落着雪，没有看许棠，先把硬币投进箱子。老秦说今晚不收钱，他也没道谢，径直坐到保温桶旁边。 “三年没见，你还替人送东",
+      "location": {
+        "line": 9,
+        "paragraph": 5
+      },
+      "position": 239
+    },
+    {
+      "phaseId": "friction",
+      "eventId": "R3",
+      "observedText": "影子：“我知道你怪我没回来。” “我不是怪你没回来。”许岑终于转过脸，“我怪你每次都先问‘需不需要’，好像只要我说不需要，你就可以什么都不做。” 这句话比责骂更准确。三年前，许",
+      "location": {
+        "line": 23,
+        "paragraph": 12
+      },
+      "position": 497
+    },
+    {
+      "phaseId": "reveal",
+      "eventId": "R4",
+      "observedText": "层。 两个人是在末班车最后一排一起打开夹层的。里面没有存折，也没有遗嘱，只有一张折得很小的维修单和一张道歉字条。父亲写：桶还能用。冬至给小岑送饭，别让他又吃泡面。小棠要是回来，别",
+      "location": {
+        "line": 37,
+        "paragraph": 19
+      },
+      "position": 957
+    },
+    {
+      "phaseId": "choice",
+      "eventId": "R5",
+      "observedText": "温桶，也认得他们，什么都没追问。姐弟把热饭送到值班室，照父亲往年的习惯，把筷子、醋包和纸巾分开放好。巡河员掀开桶盖时，白汽涌出来，遮住了许岑发红的眼睛。 回旧屋的路上，雪停了。许",
+      "location": {
+        "line": 45,
+        "paragraph": 23
+      },
+      "position": 1347
+    },
+    {
+      "phaseId": "closure",
+      "eventId": "R6",
+      "observedText": "掉厨房的灯，许棠检查窗户，两个人一起锁好旧屋。钥匙转到最后半圈时，许岑说：“明年我们自己做。别买面馆的。” “你会包？” “不会。” “我也不会。” “那就提前学。” 锁",
+      "location": {
+        "line": 49,
+        "paragraph": 25
+      },
+      "position": 1504
+    }
+  ],
+  "knowledgeChanges": [
+    {
+      "subject": "许岑",
+      "location": {
+        "line": 37,
+        "paragraph": 19
+      },
+      "position": 957
+    }
+  ]
+}
