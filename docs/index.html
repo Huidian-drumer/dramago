@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="开戏 DramaGo：把 AI 短剧写作变成可追踪、可校验、可安全采用的创作流程。">
+  <meta name="theme-color" content="#07111f">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="开戏 DramaGo｜AI 短剧创作工作台">
+  <meta property="og:description" content="不止是 Prompt Wrapper。真实的操作路由、程序合并、版本保护与独立语义校验。">
+  <meta property="og:url" content="https://huidian-drumer.github.io/dramago/">
+  <title>开戏 DramaGo｜AI 短剧创作工作台</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"SoftwareApplication","name":"开戏 DramaGo","applicationCategory":"DeveloperApplication","operatingSystem":"Web","description":"面向短剧作者的 AI 文字创作工作台。","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/Huidian-drumer/dramago"}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="page-glow page-glow-one" aria-hidden="true"></div>
+  <div class="page-glow page-glow-two" aria-hidden="true"></div>
+
+  <header class="site-header" data-header>
+    <div class="shell nav-wrap">
+      <a class="brand" href="#top" aria-label="开戏 DramaGo 首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" role="img">
+            <path d="M11 8.5h13.5A7.5 7.5 0 0 1 32 16v7.5a8 8 0 0 1-8 8H11z"/>
+            <path class="brand-cut" d="m17 14 9 6-9 6z"/>
+          </svg>
+        </span>
+        <span><strong>开戏</strong><small>DramaGo</small></span>
+      </a>
+
+      <button class="menu-button" type="button" aria-label="打开导航" aria-expanded="false" data-menu-button>
+        <span></span><span></span>
+      </button>
+
+      <nav class="main-nav" aria-label="主要导航" data-nav>
+        <a href="#capabilities">核心能力</a>
+        <a href="#architecture">执行链路</a>
+        <a href="#evidence">验证证据</a>
+        <a href="#start">快速开始</a>
+      </nav>
+
+      <a class="nav-cta" href="https://github.com/Huidian-drumer/dramago">GitHub <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="shell hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span></span> Open-source AI creative workbench</div>
+          <h1>让 AI 写作<br><em>有边界，也有证据。</em></h1>
+          <p class="hero-lede">开戏 DramaGo 是面向短剧作者的纯文字创作工作台。模型负责写，程序负责范围、版本、合并、校验和安全采用。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/Huidian-drumer/dramago">查看开源项目 <span aria-hidden="true">↗</span></a>
+            <a class="button button-secondary" href="#architecture">了解真实链路</a>
+          </div>
+          <div class="hero-note">
+            <span class="status-dot" aria-hidden="true"></span>
+            当前成熟度：可靠 L2 · MIT License
+          </div>
+        </div>
+
+        <div class="hero-console reveal" aria-label="DramaGo 操作与保护能力概览">
+          <div class="console-top">
+            <span class="traffic"><i></i><i></i><i></i></span>
+            <span>creative-task.trace</span>
+            <span class="live-pill">SAFE</span>
+          </div>
+          <div class="console-body">
+            <div class="trace-line"><span>01</span><code>operation</code><strong>REWRITE</strong></div>
+            <div class="trace-line"><span>02</span><code>target_scope</code><strong>selection</strong></div>
+            <div class="trace-line"><span>03</span><code>output_kind</code><strong>segment</strong></div>
+            <div class="trace-line"><span>04</span><code>merge_strategy</code><strong>range_replace</strong></div>
+            <div class="trace-line"><span>05</span><code>content_hash</code><strong>verified</strong></div>
+            <div class="trace-line success"><span>06</span><code>can_auto_apply</code><strong>true</strong></div>
+          </div>
+          <div class="console-footer">
+            <span>Prompt 之外，还有真正的程序保护</span>
+            <span>v0.2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="shell metric-strip reveal" aria-label="项目指标">
+        <div><strong>4</strong><span>种创作操作</span></div>
+        <div><strong>L2</strong><span>Wrapper 成熟度</span></div>
+        <div><strong>10/10</strong><span>单元测试通过</span></div>
+        <div><strong>20</strong><span>审计与故障场景</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="capabilities">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <div class="eyebrow"><span></span> Four distinct operations</div>
+          <h2>四种操作，不是四句不同的 Prompt</h2>
+          <p>每种操作都有独立输出契约与程序行为。选区、合并、追加和版本保护不依赖模型“自觉”。</p>
+        </div>
+
+        <div class="operation-grid">
+          <article class="operation-card reveal">
+            <div class="card-number">01</div>
+            <div class="operation-icon create" aria-hidden="true">＋</div>
+            <h3>CREATE</h3>
+            <p>生成完整作品，经过格式与语义校验后保存为候选版本。</p>
+            <div class="contract"><span>output_kind</span><code>full</code></div>
+          </article>
+          <article class="operation-card reveal">
+            <div class="card-number">02</div>
+            <div class="operation-icon expand" aria-hidden="true">↗</div>
+            <h3>EXPAND</h3>
+            <p>读取可靠选区，只生成目标片段，再由程序完成精确合并。</p>
+            <div class="contract"><span>output_kind</span><code>segment</code></div>
+          </article>
+          <article class="operation-card reveal">
+            <div class="card-number">03</div>
+            <div class="operation-icon rewrite" aria-hidden="true">↺</div>
+            <h3>REWRITE</h3>
+            <p>按作者要求改变目标范围，保留来源版本和影响范围记录。</p>
+            <div class="contract"><span>output_kind</span><code>full / segment</code></div>
+          </article>
+          <article class="operation-card reveal">
+            <div class="card-number">04</div>
+            <div class="operation-icon continue" aria-hidden="true">→</div>
+            <h3>CONTINUE</h3>
+            <p>模型只返回新增内容，程序追加到原文，前文不被重写。</p>
+            <div class="contract"><span>output_kind</span><code>continuation</code></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section architecture-section" id="architecture">
+      <div class="shell architecture-grid">
+        <div class="section-heading sticky-heading reveal">
+          <div class="eyebrow"><span></span> Execution pipeline</div>
+          <h2>去掉模型智能，产品仍然有逻辑。</h2>
+          <p>DramaGo 把一次生成拆成可追踪的执行阶段。模型输出不能绕过范围、类型、版本与校验约束直接覆盖作品。</p>
+          <a class="text-link" href="https://github.com/Huidian-drumer/dramago/blob/main/WRAPPER_AUDIT_REPORT.md">阅读完整 Wrapper Audit <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <ol class="pipeline" aria-label="DramaGo 执行链路">
+          <li class="pipeline-item reveal"><span class="pipeline-index">01</span><div><strong>Creative Brief</strong><p>作者要求、目标范围、required outcomes、hard / soft preserve。</p></div></li>
+          <li class="pipeline-item reveal"><span class="pipeline-index">02</span><div><strong>Operation Router</strong><p>CREATE、EXPAND、REWRITE、CONTINUE 进入不同程序路径。</p></div></li>
+          <li class="pipeline-item reveal"><span class="pipeline-index">03</span><div><strong>Output Contract</strong><p>强制 full、segment 或 continuation；类型不符立即失败。</p></div></li>
+          <li class="pipeline-item reveal"><span class="pipeline-index">04</span><div><strong>Merge & Append</strong><p>选区替换和续写追加由程序执行，不接受模型整篇偷换。</p></div></li>
+          <li class="pipeline-item reveal"><span class="pipeline-index">05</span><div><strong>Semantic Validator</strong><p>独立检查 Story Facts、承诺兑现、preserve 与明显时间线冲突。</p></div></li>
+          <li class="pipeline-item reveal"><span class="pipeline-index">06</span><div><strong>Candidate & CAS</strong><p>候选稿隔离保存；来源版本变化时禁止覆盖当前作品。</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="evidence">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <div class="eyebrow"><span></span> Evidence, not self-scoring</div>
+          <h2>通过可复现的失败场景证明保护能力</h2>
+          <p>测试不为了全绿而降低标准。无法证明的语义能力会被诚实标记为 pipeline-only 或 unavailable。</p>
+        </div>
+
+        <div class="evidence-layout">
+          <div class="evidence-panel reveal">
+            <div class="evidence-row"><span>重复句选区</span><strong class="pass">PASS</strong><small>仅第二处被替换</small></div>
+            <div class="evidence-row"><span>Source Version Race</span><strong class="pass">PASS</strong><small>旧候选不能覆盖新版本</small></div>
+            <div class="evidence-row"><span>全文冒充片段</span><strong class="pass">PASS</strong><small>OUTPUT_KIND_MISMATCH</small></div>
+            <div class="evidence-row"><span>异常超长输出</span><strong class="pass">PASS</strong><small>OUTPUT_TOO_LARGE</small></div>
+            <div class="evidence-row"><span>Prompt Injection</span><strong class="pass">PASS</strong><small>只返回 OK 不可自动采用</small></div>
+            <div class="evidence-row"><span>复杂时间线理解</span><strong class="honest">HONEST</strong><small>链路完成，准确率依赖模型</small></div>
+          </div>
+
+          <aside class="principle-card reveal">
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <blockquote>不能用 Prompt 约束冒充程序约束，也不能用模型自评分代替用户验收。</blockquote>
+            <p>DramaGo 工程原则</p>
+            <div class="principle-links">
+              <a href="https://github.com/Huidian-drumer/dramago/blob/main/L2_HARDENING_REPORT.md">L2 加固报告 ↗</a>
+              <a href="https://github.com/Huidian-drumer/dramago/blob/main/audit/WRAPPER_AUDIT_RESULTS.json">机器可读结果 ↗</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section start-section" id="start">
+      <div class="shell start-grid">
+        <div class="section-heading reveal">
+          <div class="eyebrow"><span></span> Start locally</div>
+          <h2>五分钟，跑起完整验证链路</h2>
+          <p>需要 Node.js 20+、pnpm、D1-compatible 数据库绑定与 OpenAI-compatible 文本 Provider。</p>
+          <div class="start-links">
+            <a class="button button-primary" href="https://github.com/Huidian-drumer/dramago">打开 GitHub 仓库 <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="https://github.com/Huidian-drumer/dramago/blob/main/README.md#服务端配置">查看配置说明</a>
+          </div>
+        </div>
+
+        <div class="code-card reveal">
+          <div class="code-card-top"><span>Terminal</span><button type="button" data-copy="#quickstart-code">复制命令</button></div>
+          <pre id="quickstart-code"><code><span class="muted"># 克隆与安装</span>
+git clone https://github.com/Huidian-drumer/dramago.git
+cd dramago
+pnpm install
+
+<span class="muted"># 验证真实保护链路</span>
+pnpm test
+pnpm audit:l2
+pnpm db:validate
+
+<span class="muted"># 构建与预览</span>
+pnpm build
+pnpm validate
+pnpm preview</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-section">
+      <div class="shell closing-card reveal">
+        <span class="closing-kicker">OPEN SOURCE · MIT</span>
+        <h2>创作可以自由，采用必须可靠。</h2>
+        <p>欢迎检查代码、复现实验、提交 Issue，或一起把 AI 创作工具做得更诚实。</p>
+        <div class="hero-actions">
+          <a class="button button-light" href="https://github.com/Huidian-drumer/dramago">在 GitHub 查看项目 <span aria-hidden="true">↗</span></a>
+          <a class="button button-ghost" href="https://github.com/Huidian-drumer/dramago/issues">提交 Issue</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div class="brand footer-brand">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M11 8.5h13.5A7.5 7.5 0 0 1 32 16v7.5a8 8 0 0 1-8 8H11z"/><path class="brand-cut" d="m17 14 9 6-9 6z"/></svg></span>
+        <span><strong>开戏</strong><small>DramaGo</small></span>
+      </div>
+      <p>AI 短剧创作工作台 · Built in the open.</p>
+      <div class="footer-links">
+        <a href="https://github.com/Huidian-drumer/dramago">GitHub</a>
+        <a href="https://github.com/Huidian-drumer/dramago/blob/main/LICENSE">MIT License</a>
+        <a href="https://github.com/Huidian-drumer/dramago/blob/main/SECURITY.md">Security</a>
+      </div>
+      <p class="copyright">© <span data-year></span> Huidian-drumer</p>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
