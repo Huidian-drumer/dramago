@@ -1,177 +1,122 @@
 <div align="center">
 
-<h1>开戏 DramaGo</h1>
+# 开戏 DramaGo
 
-<p><strong>不是把复杂界面套在 Prompt 外面，而是把 AI 写作变成可追踪、可校验、可安全采用的创作流程。</strong></p>
+**AI short-drama creative workbench that turns one-shot LLM generation into an editable, traceable and validated creative workflow.**
 
-<p>面向短剧作者的 AI 文字创作工作台，支持生成、扩写、改写与续写。</p>
+面向短剧作者的 AI 文字创作工作台：让一次性生成变成可编辑、可追踪、可校验的创作流程。
 
-<p>
-  <a href="https://huidian-drumer.github.io/dramago/"><img alt="Project website" src="https://img.shields.io/badge/官网-GitHub%20Pages-2F81F7?style=flat-square"></a>
-  <a href="https://github.com/Huidian-drumer/dramago/blob/main/LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-22C55E?style=flat-square"></a>
-  <img alt="Node 20+" src="https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white">
-  <img alt="Wrapper level L2" src="https://img.shields.io/badge/Wrapper%20Level-L2-8B5CF6?style=flat-square">
-  <img alt="Tests 10/10" src="https://img.shields.io/badge/Unit%20Tests-10%2F10-22C55E?style=flat-square">
-</p>
+[![Version](https://img.shields.io/badge/version-v0.5.0-0969da?style=flat-square)](RELEASE_NOTES_V0.5.0.md)
+[![Status](https://img.shields.io/badge/status-Validated%20Portfolio%20MVP-1a7f37?style=flat-square)](DOCUMENTATION.md)
+[![Node](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)](package.json)
+[![License](https://img.shields.io/badge/license-MIT-8250df?style=flat-square)](LICENSE)
 
-<p>
-  <a href="https://huidian-drumer.github.io/dramago/"><strong>访问项目官网</strong></a>
-  ·
-  <a href="#快速开始">快速开始</a>
-  ·
-  <a href="L2_HARDENING_REPORT.md">L2 加固报告</a>
-  ·
-  <a href="WRAPPER_AUDIT_REPORT.md">Wrapper 审计</a>
-</p>
+[Project site](https://huidian-drumer.github.io/dramago/) · [Documentation](DOCUMENTATION.md) · [Experiments](portfolio-evidence/PORTFOLIO_EVIDENCE_PACKAGE.md) · [Live demo](https://dramaworld-v01.huidian31.chatgpt.site/)*
+
+<sub>*托管 Demo 可能要求授权访问；GitHub Pages 只承载静态官网。</sub>
 
 </div>
 
----
+## Why DramaGo
 
-## 项目定位
+聊天式 AI 可以写文本，但局部修改可能重写无关内容，长篇续写会遗失既有事实，模型结果也可能绕过作者的明确约束。DramaGo 把创作拆成可审计的产品流程：
 
-大多数 AI 写作工具的真实链路是 `UI → Prompt → LLM → Text`。DramaGo 在模型之外增加可验证的产品逻辑：操作路由、可靠选区、程序合并、输出类型契约、版本并发保护、候选稿采用、轻量 Story Facts 与独立语义校验。
-
-当前版本专注纯文字短剧创作，不包含图片、视频、TTS、实时 StoryWorld 或批量生成。
-
-## 核心能力
-
-| 操作 | 模型负责 | 程序负责 | 输出契约 |
-| --- | --- | --- | --- |
-| `CREATE` | 生成完整作品 | 建立任务、校验并保存候选稿 | `full` |
-| `EXPAND` | 生成全文或目标片段 | 可靠选区、片段合并、范围保护 | `full` / `segment` |
-| `REWRITE` | 按作者要求重写目标范围 | 版本管理、影响范围与候选稿隔离 | `full` / `segment` |
-| `CONTINUE` | 只生成新增内容 | 在原文后程序化追加 | `continuation` |
-
-### 不是只靠模型自律
-
-- 选区操作使用字符区间合并，不通过全文搜索定位第一处同句。
-- `full` 冒充 `segment`、超长输出、空响应或非法 JSON 会被拒绝。
-- 生成期间若源版本变化，旧候选稿不会覆盖新版本。
-- 采用候选稿使用 compare-and-swap，并验证候选来源、正文 hash 与检查报告绑定关系。
-- Provider 未配置或失败时明确报错，不使用 fixture 或固定正文冒充成功。
-- 独立 Semantic Validator 只报告问题，不静默修改作者正文。
-
-## 执行链路
-
-```mermaid
-flowchart LR
-    A[作者操作] --> B[Creative Brief]
-    B --> C{Operation Router}
-    C -->|CREATE| D[完整生成]
-    C -->|EXPAND / REWRITE| E[目标范围解析]
-    C -->|CONTINUE| F[续写生成]
-    D --> G[Output Contract]
-    E --> G
-    F --> G
-    G --> H[程序合并 / 追加]
-    H --> I[Semantic Validator]
-    I --> J[候选版本]
-    J --> K{CAS Adopt}
-    K -->|来源仍是当前版本| L[采用]
-    K -->|版本已变化| M[保留候选并报告冲突]
+```text
+Creative Brief → Operation Router → Writer → Output Contract
+               → Programmatic Merge → Semantic Validator
+               → Candidate Version → CAS Adopt
 ```
 
-每次任务都会生成脱敏的 Creative Trace，记录操作、来源版本、目标范围、Provider、模型、模板、合并策略、校验状态和采用结果；不会记录 API Key、Authorization 或完整 Secret。
+模型负责生成与有限语义推理；程序负责 scope、selection、merge、append、version、hash、candidate、output contract 与 adopt。
 
-## 当前成熟度
+## Core operations
 
-当前评级为 **可靠 L2**：已具备明确的 operation 逻辑、scope、程序合并、版本保护、candidate/adopt 与错误保护，并加入最小内容保护层。
+| Operation | Provider output | Program behavior |
+| --- | --- | --- |
+| `CREATE` | `full` | 建立完整候选稿；结构增强为可选支线 |
+| `EXPAND` | `segment`（选区） | 按可靠字符范围合并，保留范围外正文 |
+| `REWRITE` | `full` / `segment` | 管理目标范围、来源版本与候选稿 |
+| `CONTINUE` | `continuation` | 程序追加，前文不会被模型整篇重写 |
 
-| 验证项 | 结果 |
-| --- | --- |
-| 单元与回归测试 | 10 / 10 通过 |
-| Wrapper Audit + 故障注入 | 20 项保护链路通过 |
-| Source Version Race | 通过 |
-| 全文冒充片段 | 通过，阻止采用 |
-| 40,000 字符异常片段 | 通过，阻止采用 |
-| Prompt Injection 返回 `OK` | 通过，阻止自动采用 |
-| 复杂事实与时间线理解 | 保护链路完成，准确率仍依赖独立模型 |
+## More than prompt instructions
 
-> [!IMPORTANT]
-> Semantic Validator 是安全护栏，不是形式化证明。项目不会宣称能够识别所有人物事实、时间线或叙事冲突。
+- 选区操作使用 character range，不靠全文搜索定位重复句。
+- 输出类型不匹配、空响应和异常超长内容不会进入可采用候选。
+- 生成期间源版本变化时，旧候选不能覆盖新版本。
+- checks 与 candidate content hash 绑定；采用执行 compare-and-swap。
+- Provider 失败明确进入 failed，不使用 fixture 或固定正文冒充成功。
+- Semantic Validator 是独立安全层，不是文学评分器或形式化证明。
 
-## 快速开始
+当前工程成熟度是 **可靠 L2 + 最小内容保护层**，不是生产 SaaS。
 
-### 环境要求
+## What the experiments showed
 
-- Node.js 20+
-- pnpm
-- D1-compatible 数据库绑定
-- OpenAI-compatible 文本 Provider
+- DeepSeek Flash 在 3 次作品集 Demo stability 运行中均建立真实 candidate；其中 1 个被 Validator 阻断。这个小样本不构成生产稳定性或 SLA 声明。
+- Validator V2 的 20-case controlled regression 中，normal false blocking 从 `3/5` 降为 `0/5`，`13/13` hard blocking 保留，`2/2` expected warnings 继续保持 warning；这不是通用语义准确率。
+- Writer latency 审计将旧约 90 秒失败边界定位为应用自身 `45s × 2 attempts`。180 秒实验窗口内，冻结的 2000 字输入两次成功，其中一次用时 94,406 ms。
+- 3-case human blind A/B 显示 **selective—not universal—benefit**：隐藏豪门继承人偏好 Content Intelligence，17 岁新帝与“看见别人即将后悔选择”的大学生偏好 Direct Writer。
 
-### 安装与验证
+因此，Content Intelligence 是 **Optional Structural Enhancement**，不是默认 CREATE Pipeline。
+
+## Quick start
+
+Requires Node.js 20+, pnpm, a D1-compatible binding, and an OpenAI-compatible text provider.
 
 ```bash
 git clone https://github.com/Huidian-drumer/dramago.git
 cd dramago
-pnpm install
-pnpm db:generate
+pnpm install --frozen-lockfile
+
 pnpm test
 pnpm build
 pnpm validate
-pnpm preview
-```
-
-运行完整 L2 审计：
-
-```bash
 pnpm audit:l2
 pnpm db:validate
+pnpm docs:validate
 ```
 
-### 服务端配置
+复制 `.env.example` 并仅在服务端环境中设置：
 
-复制 `.env.example` 并在服务端配置以下变量：
+```dotenv
+OPENAI_API_KEY=
+OPENAI_MODEL=
+OPENAI_ENDPOINT=
+VALIDATOR_MODEL=
+MAX_AUTO_REPAIRS=2
+```
 
-| 变量 | 必需 | 说明 |
-| --- | --- | --- |
-| `OPENAI_API_KEY` | 是 | OpenAI-compatible Provider 密钥 |
-| `OPENAI_MODEL` | 是 | Writer 使用的模型 |
-| `OPENAI_ENDPOINT` | 否 | 自定义 Provider 端点 |
-| `VALIDATOR_MODEL` | 否 | 独立语义校验模型，默认复用 Writer 模型 |
-| `MAX_AUTO_REPAIRS` | 否 | 格式修复次数，默认 2，最大 2 |
+API Key 不应进入前端、数据库、日志、Creative Trace 或 Git 历史。
 
-密钥只从服务端环境读取。前端没有密钥输入框，未配置时返回 `PROVIDER_NOT_CONFIGURED`。
-
-## 项目结构
+## Repository map
 
 ```text
-dramago/
-├─ web/                 作者工作台前端
-├─ worker/              API、路由、Provider、合并与校验
-├─ db/                  Drizzle 数据结构
-├─ drizzle/             数据库迁移
-├─ test/                单元与回归测试
-├─ audit/               Wrapper Audit 与故障注入
-├─ script-writer/       Script Writer V0.1 文字链路
-├─ docs/                GitHub Pages 项目官网
-└─ dist/                可部署构建产物
+web/                 Author workbench UI
+worker/              API, routing, provider, merge and validation
+db/ + drizzle/       Data model and migrations
+test/                Product and reliability regression
+audit/               Wrapper audit and fault injection
+benchmark/           Curated benchmark reports
+portfolio-evidence/  Public product evidence and decisions
+docs/                GitHub Pages product and documentation site
 ```
 
-旧互动原型保留在 `/experience`，继续使用 `dramaworld-v02` 浏览器数据，不参与创作请求。
+## Documentation
 
-## 文档与证据
+- [Documentation index](DOCUMENTATION.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Product decisions](docs/PRODUCT_DECISIONS.md)
+- [Wrapper Audit](WRAPPER_AUDIT_REPORT.md)
+- [L2 Hardening](L2_HARDENING_REPORT.md)
+- [Portfolio Evidence](portfolio-evidence/PORTFOLIO_EVIDENCE_PACKAGE.md)
+- [Release notes](RELEASE_NOTES_V0.5.0.md)
+- [Roadmap](portfolio-evidence/FUTURE_ROADMAP.md)
 
-- [L2 Hardening Report](L2_HARDENING_REPORT.md)：CAS、输出契约、Story Facts 与语义校验实现证据。
-- [Wrapper Audit Report](WRAPPER_AUDIT_REPORT.md)：真实调用链、故障注入与 Wrapper 等级结论。
-- [Creative Workbench Report](CREATIVE_WORKBENCH_REPORT.md)：创作工作台调整说明。
-- [Creative Trace Sample](audit/CREATIVE_TRACE_SAMPLE.json)：脱敏执行追踪样例。
-- [Audit Results](audit/WRAPPER_AUDIT_RESULTS.json)：机器可读测试结果。
+## Scope and limits
 
-## 安全与隐私
+DramaGo v0.5.0 is a validated portfolio MVP. The core author workflow and real-model experiments are complete. Production-scale async execution, authentication, billing, high concurrency, multimedia generation and large-scale creator validation remain roadmap items.
 
-不要提交 API Key、Authorization Header、`.env`、用户未脱敏素材或敏感 Provider 配置。发现安全问题时，请不要创建公开 Issue，参见 [SECURITY.md](SECURITY.md)。
+## Contributing and security
 
-## 参与贡献
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Do not report secrets in a public issue; follow [SECURITY.md](SECURITY.md).
 
-欢迎提交 Issue 与 Pull Request。开始前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)，并确保：
-
-1. 不降低现有测试标准；
-2. 不用硬编码样例词汇伪装语义理解；
-3. 新增检查必须明确 blocking 与 warning 的边界；
-4. Provider 失败不得进入假成功路径。
-
-## License
-
-本项目基于 [MIT License](LICENSE) 开源。
+Released under the [MIT License](LICENSE).
