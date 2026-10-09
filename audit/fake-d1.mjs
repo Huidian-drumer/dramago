@@ -61,6 +61,13 @@ class FakeStatement {
     if (this.sql.startsWith('select * from story_facts_snapshots where version_id = ?')) {
       return clone(this.db.storyFacts.find((row) => row.version_id === this.args[0]) || null);
     }
+    if (this.sql.startsWith('select * from generation_tasks where id = ?')) {
+      return clone(this.db.tasks.find((row) => row.id === this.args[0]) || null);
+    }
+    if (this.sql.startsWith('select * from generation_tasks where work_id = ? order by created_at desc')) {
+      return clone(this.db.tasks.filter((row) => row.work_id === this.args[0])
+        .sort((a, b) => b.created_at.localeCompare(a.created_at))[0] || null);
+    }
     throw new Error(`FakeD1 first() does not support: ${this.sql}`);
   }
 
@@ -83,21 +90,13 @@ class FakeStatement {
       return { success: true, meta: { changes: 1 } };
     }
     if (this.sql.startsWith('insert into versions')) {
-      const fields = ['id', 'work_id', 'parent_version_id', 'operation', 'status', 'title', 'content', 'generated_segment',
-        'creative_brief_json', 'change_summary', 'checks_json', 'model_name', 'usage_json', 'content_hash', 'validator_version',
-        'validated_at', 'adopted_at', 'created_at'];
+      const fields = this.sql.match(/insert into versions \((.+?)\) values/u)[1].split(',').map((field) => field.trim().replaceAll('`', ''));
       this.db.versions.push(Object.fromEntries(fields.map((field, index) => [field, a[index]])));
       return { success: true, meta: { changes: 1 } };
     }
     if (this.sql.startsWith('insert into generation_tasks')) {
-      const fields = ['id', 'work_id', 'source_version_id', 'creative_brief_json', 'source_hash', 'status', 'cost_state', 'attempt_count',
-        'transport_attempts', 'format_repair_attempts', 'validator_attempts', 'prompt_template_id', 'merge_strategy', 'output_kind',
-        'validator_version', 'validation_status', 'created_at'];
-      this.db.tasks.push({
-        ...Object.fromEntries(fields.map((field, index) => [field, a[index]])),
-        error_code: null, error_message: null, provider: null, model_name: null,
-        usage_json: null, result_version_id: null, completed_at: null
-      });
+      const fields = this.sql.match(/insert into generation_tasks \((.+?)\) values/u)[1].split(',').map((field) => field.trim().replaceAll('`', ''));
+      this.db.tasks.push(Object.fromEntries(fields.map((field, index) => [field, a[index]])));
       return { success: true, meta: { changes: 1 } };
     }
     if (this.sql.startsWith('insert into story_facts_snapshots')) {
@@ -141,9 +140,71 @@ class FakeStatement {
       Object.assign(row, { status: a[0], adopted_at: a[1] });
       return { success: true, meta: { changes: row ? 1 : 0 } };
     }
+    if (this.sql.startsWith('update versions set checks_json = ?, validator_version = ?, validation_status = ?, can_auto_apply = ?, validated_at = ?')) {
+      const row = this.db.versions.find((item) => item.id === a[5]);
+      if (row) Object.assign(row, { checks_json: a[0], validator_version: a[1], validation_status: a[2], can_auto_apply: a[3], validated_at: a[4] });
+      return { success: true, meta: { changes: row ? 1 : 0 } };
+    }
+    if (this.sql.startsWith('update generation_tasks set status = ?, stage = ?, stage_started_at = ?')) {
+      const row = this.db.tasks.find((item) => item.id === a[4] && (item.stage || item.status) === a[5]);
+      if (!row) return { success: true, meta: { changes: 0 } };
+      Object.assign(row, { status: a[0], stage: a[1], stage_started_at: a[2], stage_finished_at: null,
+        failed_stage: null, last_error_code: null, error_code: null, error_message: null, updated_at: a[3], completed_at: null });
+      return { success: true, meta: { changes: 1 } };
+    }
+    if (this.sql.startsWith('update generation_tasks set stage = ?, status = ?, failed_stage = ?, stage_finished_at = ?')) {
+      const row = this.db.tasks.find((item) => item.id === a[10] && (item.stage || item.status) === a[11]
+        && (item.updated_at || item.stage_started_at || item.created_at) === a[12]);
+      if (!row) return { success: true, meta: { changes: 0 } };
+      Object.assign(row, { status: a[0], stage: a[1], failed_stage: a[2], stage_finished_at: a[3],
+        last_error_code: a[4], error_code: a[5], error_message: a[6], validation_status: a[7] === 'validate' ? 'unavailable' : row.validation_status,
+        updated_at: a[8], completed_at: a[9] });
+      return { success: true, meta: { changes: 1 } };
+    }
+    if (this.sql.startsWith('update generation_tasks set status = ?, stage = ?, stage_finished_at = ?, stage_timings_json = ?, updated_at = ?, creative_brief_json = ?')) {
+      const row = this.db.tasks.find((item) => item.id === a[14]);
+      if (row) Object.assign(row, { status: a[0], stage: a[1], stage_finished_at: a[2], stage_timings_json: a[3], updated_at: a[4],
+        creative_brief_json: a[5], execution_input_json: a[6], content_plan_json: a[7], selected_mechanisms_json: a[8],
+        plan_model_name: a[9], plan_usage_json: a[10], attempt_count: a[11], transport_attempts: a[12], format_repair_attempts: a[13],
+        last_error_code: null, error_code: null, error_message: null });
+      return { success: true, meta: { changes: row ? 1 : 0 } };
+    }
+    if (this.sql.startsWith('update generation_tasks set status = ?, stage = ?, stage_finished_at = ?, stage_timings_json = ?, updated_at = ?, provider = ?')) {
+      const row = this.db.tasks.find((item) => item.id === a[17]);
+      if (row) Object.assign(row, { status: a[0], stage: a[1], stage_finished_at: a[2], stage_timings_json: a[3], updated_at: a[4],
+        provider: a[5], model_name: a[6], usage_json: a[7], result_version_id: a[8], attempt_count: a[9], transport_attempts: a[10],
+        format_repair_attempts: a[11], output_kind: a[12], candidate_content_hash: a[13], validator_version: a[14],
+        validation_status: a[15], source_is_current: a[16], last_error_code: null, error_code: null, error_message: null });
+      return { success: true, meta: { changes: row ? 1 : 0 } };
+    }
+    if (this.sql.startsWith('update generation_tasks set status = ?, stage = ?, stage_finished_at = ?, stage_timings_json = ?, updated_at = ?, validator_model_name = ?')) {
+      const row = this.db.tasks.find((item) => item.id === a[12]);
+      if (row) Object.assign(row, { status: a[0], stage: a[1], stage_finished_at: a[2], stage_timings_json: a[3], updated_at: a[4],
+        validator_model_name: a[5], validator_usage_json: a[6], semantic_validation_json: a[7], validator_attempts: a[8],
+        validation_status: a[9], source_is_current: a[10], last_error_code: null, error_code: null, error_message: null, completed_at: a[12] });
+      return { success: true, meta: { changes: row ? 1 : 0 } };
+    }
+    if (this.sql.startsWith('update generation_tasks set status = ?, stage = ?, failed_stage = ?, stage_finished_at = ?, stage_timings_json = ?')) {
+      const row = this.db.tasks.find((item) => item.id === a[15]);
+      if (row) Object.assign(row, { status: a[0], stage: a[1], failed_stage: a[2], stage_finished_at: a[3], stage_timings_json: a[4],
+        last_error_code: a[5], updated_at: a[6], error_code: a[7], error_message: a[8], attempt_count: a[9],
+        transport_attempts: a[10], format_repair_attempts: a[11], validator_attempts: a[12],
+        validation_status: a[13] ?? row.validation_status, completed_at: a[14] });
+      return { success: true, meta: { changes: row ? 1 : 0 } };
+    }
+    if (this.sql.startsWith('update generation_tasks set validator_model_name = ?')) {
+      const row = this.db.tasks.find((item) => item.id === a[2]);
+      if (row) Object.assign(row, { validator_model_name: a[0], semantic_validation_json: a[1] });
+      return { success: true, meta: { changes: row ? 1 : 0 } };
+    }
     if (this.sql.startsWith('update generation_tasks set status = ? where id = ?')) {
       const row = this.db.tasks.find((item) => item.id === a[1]);
       row.status = a[0];
+      return { success: true, meta: { changes: row ? 1 : 0 } };
+    }
+    if (this.sql.startsWith('update generation_tasks set status = ?, creative_brief_json = ? where id = ?')) {
+      const row = this.db.tasks.find((item) => item.id === a[2]);
+      Object.assign(row, { status: a[0], creative_brief_json: a[1] });
       return { success: true, meta: { changes: row ? 1 : 0 } };
     }
     if (this.sql.includes('update generation_tasks set status = ?, provider = ?')) {

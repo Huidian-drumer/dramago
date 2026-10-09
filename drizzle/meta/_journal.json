@@ -15,6 +15,13 @@
       "when": 1790338309163,
       "tag": "0001_kind_the_spike",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1791437853731,
+      "tag": "0002_conscious_oracle",
+      "breakpoints": true
     }
   ]
 }

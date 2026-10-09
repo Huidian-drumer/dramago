@@ -69,6 +69,8 @@ async function api(path, options = {}) {
     const error = new Error(payload.error?.message || '请求失败');
     error.code = payload.error?.code || 'REQUEST_FAILED';
     error.details = payload.error?.details || {};
+    error.payload = payload;
+    error.httpStatus = response.status;
     throw error;
   }
   return payload;
@@ -233,13 +235,19 @@ function showCandidate(version, { stale = false, historical = false, canApply = 
   state.candidate = version;
   $('#resultEmpty').hidden = true;
   $('#candidatePanel').hidden = false;
-  $('#candidateState').textContent = stale ? '基于旧版本' : historical ? '历史版本' : '已保存候选';
+  $('#candidateState').textContent = stale ? '基于旧版本' : historical ? '历史版本'
+    : version.validation_status === 'pending' ? '正文已生成 · 等待检查'
+      : version.validation_status === 'unavailable' ? '正文已生成 · 检查未完成' : '已保存候选';
   $('#candidateOperation').textContent = operationLabels[version.operation] || version.operation;
   $('#candidateModel').textContent = version.model_name ? `模型 ${version.model_name}` : version.operation === 'MANUAL_EDIT' ? '作者编辑' : '模型未知';
   $('#candidateTitle').textContent = version.title;
   $('#changeSummary').textContent = stale
     ? '生成期间当前正文已被编辑。该候选已保留，但不会覆盖较新的编辑；请恢复源版本后重新应用或重新生成。'
-    : version.change_summary || '候选版本已保存，采用前可先阅读全文。';
+    : version.validation_status === 'pending'
+      ? '正文已生成，正在进行独立语义检查；检查完成前暂不可自动采用。'
+      : version.validation_status === 'unavailable'
+        ? '正文已生成，语义检查未完成，暂不可自动采用。'
+        : version.change_summary || '候选版本已保存，采用前可先阅读全文。';
   $('#candidateBody').value = version.generated_segment && version.operation === 'CONTINUE' ? version.generated_segment : version.content;
   const scope = version.creative_brief?.target_scope;
   if (scope?.type === 'selection') {
@@ -249,7 +257,8 @@ function showCandidate(version, { stale = false, historical = false, canApply = 
   } else {
     $('#diffView').hidden = true;
   }
-  const blocked = version.checks?.some((item) => item.status === 'fail');
+  const blocked = version.validation_status !== 'passed' || !version.can_auto_apply
+    || version.checks?.some((item) => ['fail', 'unavailable'].includes(item.status));
   const readOnlyHistory = historical && version.status !== 'candidate';
   $('#adoptCandidate').disabled = stale || blocked || !canApply || readOnlyHistory || version.id === state.currentVersion?.id;
   $('#adoptCandidate').textContent = version.id === state.currentVersion?.id ? '当前已采用' : readOnlyHistory ? '历史版本仅查看' : '采用此版本';
@@ -363,13 +372,11 @@ async function generate() {
   const brief = buildBrief(sourceVersion);
   const sourceHash = sourceVersion ? await hashDocument(sourceVersion.title, sourceVersion.content) : null;
   const requestSnapshot = { revision: state.editorRevision, sourceVersionId: sourceVersion?.id || null };
-  setStatus('working', '正在理解要求', '已整理本次操作、目标范围与必须保留内容。');
-  $('#candidateState').textContent = '理解要求';
+  let stageCandidate = null;
+  setStatus('working', '正在理解创作意图', '正在建立可恢复的创作任务。');
+  $('#candidateState').textContent = '正在理解创作意图';
   try {
-    await new Promise((resolve) => setTimeout(resolve, 120));
-    setStatus('working', '正在生成', '文本模型正在创作；当前正文与已采用版本不会被覆盖。');
-    $('#candidateState').textContent = '模型生成中';
-    const payload = await api('/api/generate', {
+    const created = await api('/api/generate', {
       method: 'POST',
       body: JSON.stringify({
         work_id: state.work?.id || null,
@@ -378,19 +385,53 @@ async function generate() {
         source_hash: sourceHash
       })
     });
-    state.work = { ...(state.work || {}), id: payload.work_id };
-    state.versions = [payload.candidate, ...state.versions.filter((item) => item.id !== payload.candidate.id)];
-    const stale = requestSnapshot.revision !== state.editorRevision || requestSnapshot.sourceVersionId !== state.currentVersion?.id || payload.source_is_current === false;
-    showCandidate(payload.candidate, { stale, canApply: payload.can_auto_apply });
+    state.work = { ...(state.work || {}), id: created.work_id };
+    const taskId = created.task.id;
+    if (created.next_stage === 'plan') {
+      setStatus('working', '正在理解创作意图', '正在生成并保存 ContentPlan。');
+      $('#candidateState').textContent = '正在理解创作意图';
+      await api(`/api/tasks/${encodeURIComponent(taskId)}/plan`, { method: 'POST', body: '{}' });
+    }
+    setStatus('working', '正在生成正文', 'Writer 正在创作；成功后会立即保存候选。');
+    $('#candidateState').textContent = '正在生成正文';
+    const written = await api(`/api/tasks/${encodeURIComponent(taskId)}/write`, { method: 'POST', body: '{}' });
+    stageCandidate = written.candidate;
+    state.versions = [written.candidate, ...state.versions.filter((item) => item.id !== written.candidate.id)];
+    let stale = requestSnapshot.revision !== state.editorRevision
+      || requestSnapshot.sourceVersionId !== state.currentVersion?.id
+      || written.source_is_current === false;
+    showCandidate(written.candidate, { stale, canApply: false });
     renderVersions();
-    setStatus(stale ? 'error' : 'success', stale ? '候选基于旧版本' : '候选已保存', stale
-      ? '生成期间正文发生编辑，结果不会自动覆盖新内容。'
-      : `模型 ${payload.task.model || '未知'} · 用量${payload.task.usage ? '已记录' : '未知'} · 成本未知`);
-    toast(stale ? '候选已保留，请重新应用或生成' : '候选版本已生成');
+    setStatus('working', '正在检查内容', '正文候选已保存，正在运行独立语义检查。');
+    $('#candidateState').textContent = '正在检查内容';
+    try {
+      const validated = await api(`/api/tasks/${encodeURIComponent(taskId)}/validate`, { method: 'POST', body: '{}' });
+      state.versions = [validated.candidate, ...state.versions.filter((item) => item.id !== validated.candidate.id)];
+      stale = stale || validated.source_is_current === false;
+      showCandidate(validated.candidate, { stale, canApply: validated.can_auto_apply });
+      renderVersions();
+      const blocked = validated.task.validation_status === 'blocked';
+      setStatus(stale || blocked ? 'error' : 'success', stale ? '候选基于旧版本' : blocked ? '候选需要处理' : '候选已完成检查',
+        stale ? '生成期间正文发生编辑，候选不会覆盖较新的版本。'
+          : blocked ? '正文已保留，语义检查发现阻断项，暂不可自动采用。'
+            : `Writer ${validated.task.writer_model || '未知'} · 正文与检查结果已分别保存。`);
+      toast(stale ? '候选已保留，请重新应用或生成' : blocked ? '候选已保存，但存在阻断项' : '候选版本已生成并完成检查');
+    } catch (validationError) {
+      const savedCandidate = validationError.payload?.candidate || written.candidate;
+      if (savedCandidate) {
+        state.versions = [savedCandidate, ...state.versions.filter((item) => item.id !== savedCandidate.id)];
+        showCandidate(savedCandidate, { stale, canApply: false });
+        renderVersions();
+      }
+      setStatus('error', '语义检查未完成', '正文已生成并保存，暂不可自动采用；可以稍后安全重试检查。');
+      toast('正文已保存，语义检查未完成');
+    }
   } catch (error) {
-    $('#candidateState').textContent = '生成失败';
+    $('#candidateState').textContent = stageCandidate ? '正文已保存 · 检查未完成' : '生成失败';
     if (error.code === 'PROVIDER_NOT_CONFIGURED') setProvider({ configured: false, missing: error.details?.missing || ['OPENAI_API_KEY', 'OPENAI_MODEL'] });
-    setStatus('error', error.code || '生成失败', `${error.message} 已输入内容与源稿均未修改。`);
+    setStatus('error', error.code || '生成失败', stageCandidate
+      ? '正文已生成并保存，语义检查未完成，暂不可自动采用。'
+      : `${error.message} 已输入内容与源稿均未修改。`);
     toast(error.message);
   } finally {
     state.busy = false;

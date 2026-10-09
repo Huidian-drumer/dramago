@@ -5,12 +5,13 @@ const root = process.cwd();
 const dist = path.join(root, 'dist');
 const legacyHtml = await readFile(path.join(dist, 'index.html'), 'utf8');
 const legacyJs = await readFile(path.join(dist, 'app.js'), 'utf8');
-const [html, css, clientJs, workerSource, coreSource, manifest] = await Promise.all([
+const [html, css, clientJs, workerSource, coreSource, mechanismsSource, manifest] = await Promise.all([
   readFile(path.join(root, 'web', 'index.html'), 'utf8'),
   readFile(path.join(root, 'web', 'styles.css'), 'utf8'),
   readFile(path.join(root, 'web', 'app.js'), 'utf8'),
   readFile(path.join(root, 'worker', 'index.mjs'), 'utf8'),
   readFile(path.join(root, 'worker', 'core.mjs'), 'utf8'),
+  readFile(path.join(root, 'worker', 'content-mechanisms.mjs'), 'utf8'),
   readFile(path.join(root, '.openai', 'hosting.json'), 'utf8')
 ]);
 
@@ -32,6 +33,7 @@ await mkdir(path.join(dist, 'server'), { recursive: true });
 await mkdir(path.join(dist, '.openai'), { recursive: true });
 await writeFile(path.join(dist, 'server', 'index.js'), workerSource, 'utf8');
 await writeFile(path.join(dist, 'server', 'core.mjs'), coreSource, 'utf8');
+await writeFile(path.join(dist, 'server', 'content-mechanisms.mjs'), mechanismsSource, 'utf8');
 await writeFile(path.join(dist, 'server', 'assets.mjs'), assetsSource, 'utf8');
 await writeFile(path.join(dist, '.openai', 'hosting.json'), manifest, 'utf8');
 try {

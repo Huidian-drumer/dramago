@@ -18,16 +18,35 @@ function jsonModel(content, outputKind, title = '审计候选', warnings = []) {
 }
 
 function semanticModel(overrides = {}) {
-  return JSON.stringify({
+  const base = {
+    findings: [],
     blocking_conflicts: [],
     warnings: [],
     required_outcomes_met: true,
     preserve_status: { hard_met: true, soft_met: true, notes: [] },
+    promise_payoff_status: { met: true, missing_payoffs: [], notes: [] },
+    negative_constraint_status: { met: true, severity: 'pass', violations: [] },
+    candidate_internal_consistency: { consistent: true, conflicts: [] },
     operation_completed: true,
     source_story_facts: { characters: [], relationships: [], irreversible_facts: [], major_events: [], time_anchors: [] },
     candidate_story_facts: { characters: [], relationships: [], irreversible_facts: [], major_events: [], time_anchors: [] },
     ...overrides
+  };
+  const controlledFindings = [...(overrides.findings || [])];
+  for (const issue of overrides.blocking_conflicts || []) controlledFindings.push({
+    finding_type: ['STORY_FACT_CONFLICT', 'TIMELINE_CONFLICT', 'INTERNAL_FACT_CONFLICT'].includes(issue.code)
+      ? issue.code : 'EXPLICIT_HARD_CONSTRAINT_VIOLATION',
+    severity: 'blocking', confidence: 0.99, source_priority: 'source_version_fact',
+    evidence: [issue.evidence || issue.message], reason: issue.message
   });
+  if (overrides.preserve_status?.hard_met === false) controlledFindings.push({
+    finding_type: 'HARD_PRESERVE_VIOLATION', severity: 'blocking', confidence: 0.99,
+    source_priority: 'explicit_user_hard_constraint', evidence: overrides.preserve_status.notes || ['必须保留内容被改变'],
+    reason: '必须保留内容被明确改变。'
+  });
+  base.findings = controlledFindings;
+  base.blocking_conflicts = [];
+  return JSON.stringify(base);
 }
 
 class ProviderController {
@@ -112,7 +131,7 @@ async function sourceHash(version) {
 }
 
 async function generate(env, { workId, source = null, operation, targetScope, instruction = '按审计要求处理。', preserve = [] }) {
-  const response = await api(env, '/api/generate', {
+  const created = await api(env, '/api/generate', {
     work_id: workId,
     source_hash: source ? await sourceHash(source) : null,
     brief: {
@@ -126,6 +145,19 @@ async function generate(env, { workId, source = null, operation, targetScope, in
     },
     context: '审计上下文'
   });
+  if (created.status !== 201 || !created.payload.task?.id) return created;
+  const taskId = created.payload.task.id;
+  if (created.payload.next_stage === 'plan') {
+    const planned = await api(env, `/api/tasks/${taskId}/plan`, {});
+    if (planned.status !== 200) return planned;
+  }
+  const written = await api(env, `/api/tasks/${taskId}/write`, {});
+  if (![200, 201].includes(written.status)) {
+    const trace = latestTrace(env.DB, written);
+    if (trace) traces.push(trace);
+    return written;
+  }
+  const response = await api(env, `/api/tasks/${taskId}/validate`, {});
   const trace = latestTrace(env.DB, response);
   if (trace) traces.push(trace);
   return response;
@@ -246,7 +278,7 @@ async function testAuthorOverride() {
       workId: 'work_override', source, operation: 'REWRITE', targetScope: { type: 'full' },
       instruction: '改成婚礼现场曝光陈浩，婚礼取消，林晚独自离开。'
     });
-    record('TEST 4 — Author Override', response.status === 201 && response.payload.candidate?.content === replacement ? 'PASS' : 'FAIL',
+    record('TEST 4 — Author Override', response.status === 200 && response.payload.candidate?.content === replacement ? 'PASS' : 'FAIL',
       '当前链路没有旧 Skeleton/Route 拒绝器；全篇 REWRITE 接受作者新结局。',
       { http_status: response.status, checks: response.payload.candidate?.checks });
   } finally { h.close(); }
@@ -291,7 +323,7 @@ async function testProviderFailure() {
     const failedTask = afterFailure.tasks.find((task) => task.status === 'failed');
     const fakeSuccess = afterFailure.versions.some((version) => version.operation === 'CONTINUE');
     const sourceStillCurrent = afterFailure.works.find((work) => work.id === 'work_failure').current_version_id === source.id;
-    record('TEST 6 — Provider Failure', failed.status === 502 && failedTask?.transport_attempts === 2 && !fakeSuccess && sourceStillCurrent && retried.status === 201 ? 'PASS' : 'FAIL',
+    record('TEST 6 — Provider Failure', failed.status === 502 && failedTask?.transport_attempts === 2 && !fakeSuccess && sourceStillCurrent && retried.status === 200 ? 'PASS' : 'FAIL',
       'HTTP 500 最多传输重试两次后任务 failed；源稿未变、无 fallback/fixture 候选；新请求可安全重试。',
       { error: failed.payload.error, failed_task: failedTask, retry_status: retried.status });
   } finally { h.close(); }
@@ -337,7 +369,7 @@ async function testContextSensitiveRequest() {
     const rb = await generate(h.env, { workId: 'work_context_b', source: b, operation: 'REWRITE', targetScope: { type: 'full' }, instruction });
     const writerCalls = h.provider.calls.filter((call) => call.kind === 'writer');
     const promptsDiffer = writerCalls[0]?.body?.messages?.[1]?.content !== writerCalls[1]?.body?.messages?.[1]?.content;
-    const protectedB = ra.status === 201 && ra.payload.can_auto_apply === true && rb.status === 201 && rb.payload.can_auto_apply === false
+    const protectedB = ra.status === 200 && ra.payload.can_auto_apply === true && rb.status === 200 && rb.payload.can_auto_apply === false
       && rb.payload.candidate.checks.some((item) => item.check === 'TIMELINE_CONFLICT' && item.status === 'fail');
     record('TEST 8 — Context-Sensitive Author Request', protectedB ? 'PASS_PIPELINE_ONLY' : 'FAIL',
       'A/B 前文进入不同 prompt；独立校验把 B 的静默当前时点插入标为时间线冲突。该测试验证保护管线，不冒充真实模型准确率。',
@@ -404,7 +436,7 @@ async function testValidatorUnavailable() {
     h.provider.queueValidator({ kind: 'http', status: 500 }, { kind: 'http', status: 500 });
     const response = await generate(h.env, { workId: 'work_validator_unavailable', source, operation: 'REWRITE', targetScope: { type: 'full' }, instruction: '改写全文。' });
     const unavailable = response.payload.candidate?.checks?.some((item) => item.check === 'SEMANTIC_VALIDATION' && item.status === 'unavailable');
-    record('HARDENING — Validator Unavailable', response.status === 201 && unavailable && response.payload.can_auto_apply === false && response.payload.task.validator_attempts === 2 ? 'PASS' : 'FAIL',
+    record('HARDENING — Validator Unavailable', response.status === 502 && unavailable && response.payload.can_auto_apply === false && response.payload.task.validator_attempts === 2 ? 'PASS' : 'FAIL',
       'Validator 失败时保留可查看候选，明确 unavailable，并禁止自动采用；真实尝试次数为 2。',
       { can_auto_apply: response.payload.can_auto_apply, validator_attempts: response.payload.task?.validator_attempts, validation_status: response.payload.task?.validation_status });
   } finally { h.close(); }
@@ -439,7 +471,7 @@ async function faultCase(id, behaviors, expectation) {
 async function runFaultInjection() {
   await faultCase('A — 正常 segment', [{ kind: 'json', content: '正常扩写片段。' }], {
     result: 'PASS',
-    status: (r, t, c) => r.status === 201 && t.status === 'saved' && c.content === '前文。正常扩写片段。后文。',
+    status: (r, t, c) => r.status === 200 && t.status === 'completed' && c.content === '前文。正常扩写片段。后文。',
     observed: () => '正确保存候选，源版本未自动采用。'
   });
   await faultCase('B — 返回整篇而不是 segment', [{ kind: 'json', outputKind: 'full', content: '前文。整篇模型输出。后文。' }], {
@@ -451,7 +483,14 @@ async function runFaultInjection() {
     preserve: ['目标片段。'],
     validatorBehaviors: [{ kind: 'semantic', value: { preserve_status: { hard_met: false, soft_met: true, notes: ['必须保留事实被改变'] } } }],
     result: 'PASS',
-    status: (r, _t, c) => r.status === 201 && r.payload.can_auto_apply === false && c.checks.some((x) => x.check === 'HARD_PRESERVE' && x.status === 'fail'),
+    status: (r, _t, c) => r.status === 200 && r.payload.can_auto_apply === false && c.checks.some((x) => (
+      x.check === 'HARD_PRESERVE_VIOLATION'
+      && x.status === 'fail'
+      && x.severity === 'blocking'
+      && x.confidence >= 0.85
+      && Array.isArray(x.evidence)
+      && x.evidence.length > 0
+    )),
     observed: (r) => `hard_preserve 语义违反会阻断自动采用：can_auto_apply=${r.payload.can_auto_apply}。`
   });
   await faultCase('D — 空响应', [{ kind: 'empty' }], {
