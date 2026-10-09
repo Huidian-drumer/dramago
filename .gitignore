@@ -3,3 +3,11 @@ node_modules/
 .sites-runtime/
 .wrangler/
 .env
+.env.*
+!.env.example
+.cache/
+coverage/
+tmp/
+temp/
+*.log
+*.zip
