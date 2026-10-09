@@ -58,4 +58,3 @@ See [DramaGo Roadmap](docs/roadmap/index.html) and [Future Productization Roadma
 ## Public-history provenance
 
 The validated MVP was developed through an internal iterative history and consolidated into the public repository as the v0.5.0 release snapshot, while preserving the existing public GitHub history. Internal commits were not represented as individually migrated public commits.
-

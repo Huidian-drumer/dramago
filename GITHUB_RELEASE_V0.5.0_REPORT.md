@@ -1,6 +1,6 @@
 # DramaGo v0.5.0 — Public Release Preparation Report
 
-Status: Pull-request preparation; merge, tag, GitHub Release and production Pages deployment are intentionally deferred.  
+Status: Pull-request preparation; merge, tag, GitHub Release and production Pages deployment are intentionally deferred.
 Date: 2026-10-10
 
 ## Release identity
@@ -46,7 +46,7 @@ Date: 2026-10-10
 ## Security and privacy
 
 24. High-confidence secret scan: no API key, bearer token or assigned secret value found.
-25. Personal absolute-path scan: no `C:\\Users\\...`, `Documents\\Codex`, `/Users/...` or `/home/...` reference found in release files.
+25. Personal absolute-path scan: no Windows user-profile, Codex workspace, macOS home or Linux home path found in release files.
 26. Portfolio evidence: public curated Markdown reports included; raw benchmark bodies, one-time runner, raw machine JSON and raw traces excluded.
 - No `.env` or `.env.*` file is selected for commit; `.env.example` contains empty placeholders only.
 - Dependency audit found one **moderate, development-only transitive** `esbuild` advisory through `drizzle-kit`; no high or critical advisory. It is recorded as a known non-release-blocking issue rather than hidden.

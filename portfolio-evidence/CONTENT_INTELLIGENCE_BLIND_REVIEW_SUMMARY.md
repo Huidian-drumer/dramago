@@ -58,4 +58,3 @@ Not forced when:
 ## Trade-off
 
 In the engineering A/B, the enhanced path had higher total latency because it added a plan stage and a longer Writer context. The experiment therefore supports selective use rather than global enablement.
-

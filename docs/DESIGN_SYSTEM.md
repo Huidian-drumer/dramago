@@ -52,4 +52,3 @@ The shared CSS provides Button, IconButton, Label, StateLabel, Counter, Card, Pa
 ## Theme behavior
 
 System is the default. A saved user choice is stored in `localStorage` under `dramago-theme`. A small inline head script applies an explicit saved theme before paint; the shared script handles later changes.
-

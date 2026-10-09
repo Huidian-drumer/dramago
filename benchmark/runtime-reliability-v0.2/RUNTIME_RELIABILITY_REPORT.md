@@ -136,4 +136,3 @@ B 组 ContentPlan 与机制召回保存在 `plans/`；失败案例在 `cases/` �
 ## 9. 停止点
 
 已完成代码加固、发布、真实 Smoke、冻结的 8 次 A/B 调用以及 20 条 Validator 固定回归。本轮到此停止；未改 Content Intelligence 内容逻辑，未新增其他创作功能。
-

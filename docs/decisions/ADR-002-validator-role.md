@@ -24,4 +24,3 @@ Authors can inspect warnings without losing a Candidate. The system still cannot
 
 - Treat every detected issue as blocking: rejected as over-restrictive.
 - Remove semantic validation: rejected because clear fact and hard-preserve conflicts should protect adoption.
-

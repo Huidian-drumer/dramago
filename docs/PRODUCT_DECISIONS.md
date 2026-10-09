@@ -11,4 +11,3 @@
 | Production infrastructure is deferred | Portfolio scope and latency investigation | Queue, auth, billing and durable execution stay on the roadmap. |
 
 Detailed context is recorded in [`decisions/`](decisions/).
-

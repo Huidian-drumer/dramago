@@ -1,10 +1,10 @@
 # WRITER_LATENCY_AND_VALIDATOR_CALIBRATION_V0.3
 
-执行日期：2026-10-08  
-生产站点：https://dramaworld-v01.huidian31.chatgpt.site  
-最终部署版本：Sites v11 / commit `26f1544e08e4633739077d4b2e1d3bfe38d4dfff`  
-环境变量版本：revision 4  
-Writer：`deepseek-v4-pro`  
+执行日期：2026-10-08
+生产站点：https://dramaworld-v01.huidian31.chatgpt.site
+最终部署版本：Sites v11 / commit `26f1544e08e4633739077d4b2e1d3bfe38d4dfff`
+环境变量版本：revision 4
+Writer：`deepseek-v4-pro`
 Planner / Validator：`deepseek-flash`
 
 ## 1. 结论
@@ -208,4 +208,3 @@ Phase 2 结论：`APPLICATION_TIMEOUT_CONFIRMED`。
 状态：`ELIGIBLE_TO_REQUEST_CI01_CI04_AB_RERUN`。
 
 冻结的 2000 字 CREATE 输入在 180 秒窗口内 2/2 成功，其中一次 94,406 ms，说明当前同步链路能够越过旧应用超时并完成候选持久化。按照停止条件，本轮到此结束；在产品负责人明确确认前，不重新执行 CI01–CI04 A/B。
-

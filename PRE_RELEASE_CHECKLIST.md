@@ -1,6 +1,6 @@
 # DramaGo v0.5.0 Pre-release Checklist
 
-Release target: `DramaGo v0.5.0 — Validated Portfolio MVP`  
+Release target: `DramaGo v0.5.0 — Validated Portfolio MVP`
 Release branch: `release/v0.5.0`
 
 ## Repository preflight
@@ -51,4 +51,3 @@ Release branch: `release/v0.5.0`
 - [ ] Pull request opened against `main`.
 - [ ] Human approval received before merge.
 - [ ] Tag, GitHub Release and production Pages intentionally deferred until explicit approval.
-

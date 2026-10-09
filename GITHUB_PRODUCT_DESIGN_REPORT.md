@@ -1,7 +1,7 @@
 # DramaGo v0.5.0 — GitHub Product Design Report
 
-Date: 2026-10-10  
-Target: GitHub Pages under `/dramago/`  
+Date: 2026-10-10
+Target: GitHub Pages under `/dramago/`
 Direction: GitHub-native open-source product and documentation site, with DramaGo's own identity.
 
 ## Outcome

@@ -24,4 +24,3 @@ Model flexibility is bounded by explicit operation contracts. More implementatio
 
 - Prompt-only preservation: rejected because it cannot guarantee target scope.
 - Full-document regeneration for every operation: rejected because unrelated text can drift.
-

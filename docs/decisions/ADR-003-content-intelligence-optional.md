@@ -26,4 +26,3 @@ The product avoids extra latency and over-structuring where planning adds little
 
 - Always run Content Intelligence: rejected by blind-review results and latency cost.
 - Remove it entirely: rejected because the hidden-heir case showed a useful promise-to-payoff improvement.
-

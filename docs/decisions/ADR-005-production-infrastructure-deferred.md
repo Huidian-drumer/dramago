@@ -24,4 +24,3 @@ The project can communicate its actual product logic and experiments without imp
 
 - Implement Queue and durable execution now: rejected as infrastructure ahead of validated product demand.
 - Present the current demo as production-ready: rejected as inaccurate.
-

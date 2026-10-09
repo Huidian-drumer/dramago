@@ -14,4 +14,3 @@ This directory contains the static GitHub Pages site and public product document
 - [ADRs](decisions/)
 
 All paths are relative so the site works under the GitHub Pages `/dramago/` project base path.
-

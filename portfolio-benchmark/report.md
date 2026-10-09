@@ -31,7 +31,7 @@ Token 格式为 prompt/completion/reasoning/total。
 
 ## TASK 2 — Lightweight Content Intelligence A/B
 
-A：CreativeBrief → Writer → Validator。  
+A：CreativeBrief → Writer → Validator。
 B：CreativeBrief → ContentPlan → Mechanism Retrieval → Writer → Validator。
 
 | Case | Group | Result | Plan ms | Write ms | Validate ms | Total ms | Writer tokens | Validation | Error |
@@ -49,5 +49,5 @@ B：CreativeBrief → ContentPlan → Mechanism Retrieval → Writer → Validat
 
 ## TASK 3 / TASK 4
 
-工程证据见 [PORTFOLIO_EVIDENCE_PACKAGE.md](../portfolio-evidence/PORTFOLIO_EVIDENCE_PACKAGE.md)。  
+工程证据见 [PORTFOLIO_EVIDENCE_PACKAGE.md](../portfolio-evidence/PORTFOLIO_EVIDENCE_PACKAGE.md)。
 未来路线图见 [FUTURE_ROADMAP.md](../portfolio-evidence/FUTURE_ROADMAP.md)。路线图项目均未在本轮实现。

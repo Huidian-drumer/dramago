@@ -43,4 +43,3 @@ All notable public changes are recorded here. This changelog begins with the val
 - Semantic validation remains model-dependent and may emit non-blocking warnings on normal drafts.
 - The experiments are small controlled samples, not SLA or general-accuracy measurements.
 - Authentication, billing, abuse protection, large-scale creator research and production observability are not implemented.
-

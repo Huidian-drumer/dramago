@@ -1,10 +1,10 @@
 # CONTENT_INTELLIGENCE_V0.1 — OFFICIAL A/B RERUN
 
-执行日期：2026-10-08  
-生产地址：https://dramaworld-v01.huidian31.chatgpt.site  
-正式调用数：8  
-候选建立数：4  
-无候选失败数：4  
+执行日期：2026-10-08
+生产地址：https://dramaworld-v01.huidian31.chatgpt.site
+正式调用数：8
+候选建立数：4
+无候选失败数：4
 内容质量结论：等待人工 Blind Content Review
 
 ## 1. 冻结环境
@@ -181,4 +181,3 @@ ContentPlan `main_payoff`：
 - 8 个 `blind-review/*.md`
 
 本轮没有执行第二轮生成，没有调整 Prompt、机制或 Validator，没有进入 Narrative Memory、图片、视频或 TTS。等待人工 Blind Content Review。
-

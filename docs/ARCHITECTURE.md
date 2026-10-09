@@ -48,4 +48,3 @@ Prompt instructions improve model behavior but do not replace program checks. Se
 ## Current limitation
 
 PLAN, WRITE and VALIDATE are staged, but long Writer calls still use synchronous HTTP execution. Durable async execution is a future productization option, not part of v0.5.0.
-

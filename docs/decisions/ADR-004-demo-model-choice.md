@@ -24,4 +24,3 @@ The demo has a more practical latency profile while preserving safety checks. Th
 
 - Keep V4-Pro as the demo default: retained as a quality option, but less predictable for synchronous demonstrations.
 - Change prompt or target length: rejected because the stability experiment froze both.
-
