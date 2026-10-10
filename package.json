@@ -11,6 +11,8 @@
     "audit:l2": "npm run build && node audit/run-wrapper-audit.mjs",
     "db:validate": "node audit/validate-migrations.mjs",
     "docs:validate": "node scripts/validate-docs.mjs",
+    "claims:validate": "node scripts/validate-public-claims.mjs",
+    "links:validate": "node scripts/validate-repository-links.mjs",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {

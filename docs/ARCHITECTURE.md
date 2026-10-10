@@ -12,18 +12,23 @@ Creative Brief
   → Writer
   → Output Contract
   → Programmatic Merge / Append
-  → Semantic Validator
   → Candidate Version
+  → Separate model-assisted Semantic Validator
+  → Checks + Story Facts Snapshot
   → CAS Adopt
+
+Next validation:
+Source Story Facts Snapshot → Semantic Validator
 ```
 
-CREATE may optionally add `ContentPlan → Mechanism Retrieval` before Writer. The enhanced path is not the default for every story.
+CREATE may optionally add `ContentPlan → Mechanism Retrieval` before Writer through the API-level experimental path. The v0.5.0 UI does not expose this toggle; UI CREATE uses Direct Writer.
 
 ## Model responsibilities
 
 - Generate full text, a selected segment or a continuation.
-- Perform limited semantic reasoning in the independent Validator.
-- Extract lightweight Story Facts snapshots.
+- Generate a structured ContentPlan and select mechanism IDs when the experimental path is explicitly requested.
+- Perform limited semantic reasoning in a separate Validator call, including facts, timeline, outcomes and internal consistency.
+- Extract lightweight, version/hash-bound Story Facts snapshots during validation.
 
 ## Program responsibilities
 
@@ -36,6 +41,7 @@ CREATE may optionally add `ContentPlan → Mechanism Retrieval` before Writer. T
 - Bind validation to Candidate ID and content hash.
 - Compare source version and update through CAS.
 - Keep Provider failures from changing the source work.
+- Allowlist and deduplicate known mechanism IDs, cap the selection at five, then persist and trace the selected IDs.
 
 ## Persistence
 
@@ -43,7 +49,25 @@ The workbench uses D1-compatible storage for works, versions, generation tasks, 
 
 ## Trust boundary
 
-Prompt instructions improve model behavior but do not replace program checks. Semantic validation is probabilistic; scope, merge, version and adoption safety are enforced by code.
+Prompt instructions improve model behavior but do not replace program checks. Semantic validation is model-assisted and probabilistic. The program enforces finding-type allowlists, severity, confidence and evidence requirements, source priority, hash binding, `can_auto_apply` and CAS adoption. It does not establish an independent truth engine.
+
+## Story Facts boundary
+
+Story Facts in v0.5.0 are version/hash-bound validation fact snapshots, not a Narrative Memory or Writer Memory system. The Validator extracts source and candidate facts, the program normalizes and stores them, and later validation stages may read them. The Writer does not consume Story Facts directly; it receives the CreativeBrief, context, source-version full text and, when explicitly enabled, ContentPlan and selected mechanisms.
+
+## Current runtime
+
+- `worker/`: API routing, provider calls, merge, validation and adoption controls.
+- `web/`: current author workbench UI.
+- `db/`: current persistence schema.
+
+These directories form the v0.5.0 authoring runtime.
+
+## Legacy / historical components
+
+- `script-writer/`: retained Script Writer V0.1 experiment with a separate WritingPacket, local-test persistence and legacy validation stack; it is not imported by the current Worker.
+- `/experience`: retained interactive prototype built from legacy sources under `dist/`; it does not share the current authoring pipeline and is not the recommended entry.
+- `dist/` and `drizzle/meta/`: generated release and migration artifacts, not independent source architectures.
 
 ## Current limitation
 

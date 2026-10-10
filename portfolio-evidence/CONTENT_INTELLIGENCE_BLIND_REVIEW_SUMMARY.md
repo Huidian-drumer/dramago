@@ -15,6 +15,8 @@ A lightweight ContentPlan plus curated Mechanism Retrieval might help CREATE tur
 
 This is a three-case qualitative product experiment, not a statistical benchmark.
 
+Technical boundary: the enhanced path was explicitly invoked through the API/benchmark runner; v0.5.0 UI CREATE has no Content Intelligence toggle. A Planner LLM selected IDs from an eight-item human-curated catalog. Program code allowlisted known IDs, removed duplicates, capped the selection at five, persisted it and recorded trace data. Writer fulfillment remained prompt/model-mediated; there was no deterministic mechanism verifier or proprietary narrative model.
+
 ## Results
 
 ### Case 01 — Hidden heir

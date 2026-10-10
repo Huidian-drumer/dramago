@@ -10,7 +10,7 @@ The first Validator configuration preserved hard-conflict recall but blocked nor
 
 ## Decision
 
-Validator protects adoption against evidenced hard conflicts. Blocking requires an allowed finding type, `severity=blocking`, sufficient confidence and concrete evidence. Style, pacing and inferred mechanism quality remain warnings or human-review concerns.
+Validator is a separate model-assisted validation stage/call. It may use the same Provider and may fall back to the Writer model, so it is not an independent truth or reasoning engine. The model judges facts, timeline, outcomes and internal consistency; the program protects adoption through an allowed finding type, `severity=blocking`, sufficient confidence, concrete evidence, source priority, hash binding, `can_auto_apply` and CAS adoption. Style, pacing and inferred mechanism quality remain warnings or human-review concerns.
 
 ## Evidence
 

@@ -8,7 +8,7 @@
 
 DramaGo 要解决的不是“把用户输入拼成 Prompt”这一单点问题，而是让短剧创作中的生成、局部编辑、版本管理和内容保护形成可验证的产品闭环。
 
-最初的 Wrapper Audit 将系统评为 **L2 下沿**：产品已经具备 operation、scope、程序合并、candidate/adopt 和失败保护，但存在 source-version race、片段输出契约缺失、超长输出可采用，以及事实冲突主要依赖模型自律等问题。
+最初的 Wrapper Audit 按 DramaGo 项目内部 Wrapper maturity rubric 将系统评为 **L2 下沿**（非行业认证）：产品已经具备 operation、scope、程序合并、candidate/adopt 和失败保护，但存在 source-version race、片段输出契约缺失、超长输出可采用，以及事实冲突主要依赖模型自律等问题。
 
 对应证据：
 
@@ -20,10 +20,10 @@ DramaGo 要解决的不是“把用户输入拼成 Prompt”这一单点问题�
 
 1. 作者输入背景、创作要求和目标篇幅。
 2. 选择 CREATE、EXPAND、REWRITE 或 CONTINUE。
-3. CREATE 可在确有结构缺口时选择 Content Intelligence 路径，先生成轻量 ContentPlan 并召回少量机制；默认路径与其他操作直接进入 Writer。
+3. 后端 API / benchmark 的 CREATE 可显式选择实验性 Content Intelligence 路径，先由 Planner LLM 生成轻量 ContentPlan 并选择少量机制 ID；v0.5.0 UI 没有该开关，默认 UI 路径与其他操作直接进入 Writer。
 4. Writer 输出必须符合 `full / segment / continuation` 契约。
 5. 程序完成片段替换或 continuation append，并立即保存 candidate。
-6. 独立 Validator 检查事实、时间线、hard preserve、required outcomes 和内部一致性。
+6. 独立执行阶段的模型辅助 Validator 检查事实、时间线、hard preserve、required outcomes 和内部一致性；程序执行 finding/evidence 门槛、hash 绑定与采用控制。
 7. candidate 只有在校验、正文 hash 和 source version 都有效时才允许 adopt。
 
 该流程将“生成正文”和“采用正文”分离，模型失败或 Validator 阻断不会覆盖源稿。
@@ -74,8 +74,8 @@ L2 加固完成了：
 - `output_kind` 强契约；
 - 集中式输出尺寸限制；
 - candidate content hash 与 checks 绑定；
-- 轻量 StoryFacts Snapshot；
-- 独立 Semantic Validator；
+- Validator 抽取、version/hash-bound 的轻量 StoryFacts validation snapshots（Writer 不直接读取）；
+- 独立执行阶段的模型辅助 Semantic Validator 与程序化阻断门槛；
 - hard / soft preserve 分级；
 - 真实 transport、format repair、validator attempts；
 - adoption event 与脱敏 Creative Trace。
@@ -90,7 +90,7 @@ L2 加固完成了：
 | 旧检查放行新正文 | 未保护 | `VALIDATION_STALE` |
 | Provider 两次失败 attempt | 可能记录 0 | 正确记录 2 |
 
-系统结论为“可靠 L2 + 最小内容保护层”，不宣称 L3。
+系统结论为“DramaGo 项目内部 rubric 的可靠 L2 + 最小内容保护层”，不宣称 L3；该等级不是行业认证。
 
 对应证据：[`L2_HARDENING_REPORT.md`](../L2_HARDENING_REPORT.md)。
 
@@ -127,6 +127,10 @@ Validator V2 初始回归的事实冲突召回较强，但 severity 过严：
 对应证据：[`benchmark/writer-latency-validator-calibration-v0.3/WRITER_LATENCY_AND_VALIDATOR_CALIBRATION_REPORT.md`](../benchmark/writer-latency-validator-calibration-v0.3/WRITER_LATENCY_AND_VALIDATOR_CALIBRATION_REPORT.md)。
 
 ## 8. Content Intelligence
+
+这里的 Content Intelligence V0.1 是实验性的 API / benchmark 可选路径，不是当前 UI 功能或自研叙事模型。Planner LLM 返回 ContentPlan 与机制 ID；程序只做 known-ID allowlist、去重、最多 5 条、持久化和 traceability；Writer 是否落实机制仍由 Prompt / model 决定，当前没有 deterministic mechanism verifier、causal graph search、constraint solver 或 narrative scoring algorithm。
+
+Story Facts 同样不是 Writer memory：它们由 Validator 抽取并按 version/hash 保存，供后续 Validator 使用；Writer 不直接读取。
 
 ### 历史 V4-Pro 正式实验
 

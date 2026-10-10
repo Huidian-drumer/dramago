@@ -2,12 +2,20 @@
 
 All notable public changes are recorded here. This changelog begins with the validated portfolio MVP and does not invent earlier release history.
 
+## Unreleased — Documentation credibility alignment
+
+- Clarified that Story Facts are Validator-extracted, version/hash-bound validation snapshots and are not consumed by Writer.
+- Clarified that Content Intelligence V0.1 is an experimental API/benchmark capability without a v0.5.0 UI toggle.
+- Separated current runtime source from retained legacy experiments.
+- Added public [capability boundaries](docs/CAPABILITY_BOUNDARIES.md), [repository provenance](docs/PROVENANCE.md) and [v0.5.0 errata](docs/errata/v0.5.0-capability-clarifications.md).
+- No product behavior, benchmark result, version, tag or published Release changed.
+
 ## [0.5.0] — 2026-10-10
 
 ### Added
 
-- Content Intelligence V0.1 with lightweight ContentPlan and curated Mechanism Retrieval.
-- Validator V2 with evidence-bound blocking findings and severity calibration.
+- Experimental API/benchmark Content Intelligence V0.1 with lightweight ContentPlan and curated Mechanism Retrieval; no v0.5.0 UI toggle.
+- Validator V2 as a separate model-assisted stage with evidence-bound programmatic blocking and severity calibration.
 - Staged generation tasks for PLAN, WRITE and VALIDATE.
 - Public portfolio benchmark evidence and human blind-review summary.
 - GitHub/Primer-inspired product and documentation site.
@@ -34,7 +42,7 @@ All notable public changes are recorded here. This changelog begins with the val
 - Semantic Validator protects adoption; it is not a literary-quality judge or formal proof system.
 - DeepSeek Flash is preferred as the portfolio demo Writer candidate without changing the existing hosted configuration in this release.
 - Production Queue and durable execution remain deferred.
-- The project remains a Validated Portfolio MVP, not a production SaaS release.
+- The project remains a Validated Portfolio MVP—engineering and controlled-experiment evidence, not market/SLA validation—and not a production SaaS release.
 
 ### Known Limitations
 

@@ -1,4 +1,14 @@
-# 开戏 DramaGo Script Writer V0.1
+# Legacy Experiment — Script Writer V0.1
+
+## Status
+
+- Retained for provenance and historical experiments.
+- Not imported by the current Worker runtime.
+- Retained module is not part of the v0.5.0 authoring path.
+- Uses a separate `WritingPacket`, local-test persistence and legacy validation stack.
+- The current architecture is under `worker/ + web/ + db/`.
+
+Current references: [Architecture](../docs/ARCHITECTURE.md) · [Current Workbench](../README.md) · [Provenance](../PROVENANCE.md)
 
 Pure-text writer and validation module. It does not generate images, video, TTS, storyboards, visual prompts, or realtime StoryWorld content.
 

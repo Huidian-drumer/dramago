@@ -6,15 +6,21 @@
   → Writer
   → Output Contract
   → Programmatic Merge / Append
-  → Semantic Validator
   → Candidate Version
-  → Compare-and-swap Adopt</code></pre><p>CREATE 可以在 Writer 前选择轻量 ContentPlan 与 Mechanism Retrieval；EXPAND、REWRITE 和 CONTINUE 保持直接链路。</p>
+  → Separate model-assisted Validator
+  → Checks + Story Facts Snapshot
+  → Compare-and-swap Adopt
+
+Next validation:
+Source Story Facts Snapshot → Validator</code></pre><p>CREATE 的后端 API 可以显式选择实验性 ContentPlan 与 Mechanism Retrieval；v0.5.0 UI 没有开关，普通 CREATE 走 Direct Writer。EXPAND、REWRITE 和 CONTINUE 保持直接链路。</p>
 <h2>Selection and merge</h2><p><code>selection_range</code> 是程序输入，不只是 Prompt 文本。目标片段以字符区间解析和替换，范围外内容由程序保留。Provider 若返回错误类型或异常尺寸，候选不会进入可自动采用状态。</p>
 <h2>Version safety</h2><p>任务基于明确 <code>source_version_id</code>。生成完成前重新读取作品当前版本；如果来源已过期，候选可保留，但 <code>source_is_current=false</code>。采用时执行条件更新：</p><pre><code>UPDATE works
 SET current_version_id = ?
 WHERE id = ?
   AND current_version_id = ?</code></pre><p>受影响行数不是 1 时返回 <code>SOURCE_VERSION_CONFLICT</code>，候选不会被删除。</p>
 <h2>Validation binding</h2><p>candidate 保存 <code>content_hash</code>、<code>validator_version</code> 和 <code>validated_at</code>。checks 同时绑定 candidate id 与 content hash；采用前 hash 不一致会返回 <code>VALIDATION_STALE</code>。</p>
+<h2>Semantic and Story Facts boundary</h2><p>Validator 是独立执行阶段的模型辅助校验，可能使用同一 Provider 或 fallback 到 Writer model。模型判断 facts、timeline、outcomes 与 internal consistency；程序执行 finding allowlist、severity、confidence、evidence、source priority、hash binding、<code>can_auto_apply</code> 与 CAS adopt。Story Facts 由 Validator 提取并按 version/hash 保存，只供后续 Validator 使用；Writer 不直接读取。</p>
 <h2>Trace and privacy</h2><p>Creative Trace 记录 task、operation、source/candidate、scope、provider/model、prompt template、merge、validation 与 adopt 状态。API Key、Authorization 和完整 Secret 不进入 trace。</p>
+<h2>Current runtime</h2><p><code>worker/ + web/ + db/</code> 构成 v0.5.0 当前作者工作台。<code>script-writer/</code> 是独立 WritingPacket / 本地测试持久化 / legacy validation stack 的历史 V0.1 实验；<code>/experience</code> 是保留的互动原型。两者均不在当前主调用链中。</p>
 <h2>Runtime boundary</h2><p>当前演示链路仍使用同步长 HTTP WRITE。历史延迟实验说明旧约 90 秒边界来自 45 秒 × 2 的应用尝试，而不是已证明的固定宿主硬限制。Queue 与 durable execution 被记录为未来路线图，不在 v0.5.0 实施。</p>
 </article></div></main><footer class="site-footer"><div class="docs-container footer-inner"><span>DramaGo Docs · Architecture</span><nav class="footer-links"><a href="./reference.html">Next: Reference →</a><a href="https://github.com/Huidian-drumer/dramago/blob/main/docs/ARCHITECTURE.md">Source doc ↗</a></nav></div></footer><script src="../assets/site.js"></script></body></html>
