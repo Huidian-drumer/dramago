@@ -57,4 +57,7 @@ DramaGo v0.5.0 是一个验证型 AI 短剧创作工作台 MVP。本文档只做
 
 - [Changelog](CHANGELOG.md)
 - [DramaGo v0.5.0 release notes](RELEASE_NOTES_V0.5.0.md)
-- [Pre-release checklist](PRE_RELEASE_CHECKLIST.md)
+- [Pre-release checklist](reports/release/PRE_RELEASE_CHECKLIST.md)
+- [Public release preparation report](reports/release/GITHUB_RELEASE_V0.5.0_REPORT.md)
+- [Product site design report](reports/release/GITHUB_PRODUCT_DESIGN_REPORT.md)
+- [Public/source snapshot summary](reports/release/PUBLIC_VS_SOURCE_SUMMARY.md)

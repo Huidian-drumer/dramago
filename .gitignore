@@ -11,3 +11,5 @@ tmp/
 temp/
 *.log
 *.zip
+audit/CREATIVE_TRACE_SAMPLE.json
+audit/WRAPPER_AUDIT_RESULTS.json
