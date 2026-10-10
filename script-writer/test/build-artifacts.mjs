@@ -15,7 +15,7 @@ import {
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..');
 const artifactRoot = path.join(root, 'artifacts');
-const outputRoot = 'C:\\Users\\谷云宇\\Documents\\Codex\\2026-09-25\\files-pasted-by-the-user-ai\\outputs\\script-writer-v0.1';
+const outputRoot = path.join(root, '.data', 'release-output');
 const store = new LocalJsonTaskStore(path.join(root, '.data', 'tasks'));
 
 function renderIssueList(issues) {

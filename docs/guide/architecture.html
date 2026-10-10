@@ -1,0 +1,20 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="DramaGo 执行架构、选区合并、版本保护和候选采用。"><link rel="canonical" href="https://huidian-drumer.github.io/dramago/guide/architecture.html"><title>Architecture｜DramaGo Docs</title><script>try{const t=localStorage.getItem('dramago-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script><link rel="stylesheet" href="../assets/site.css"></head><body><a class="skip-link" href="#main">跳到主要内容</a>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="../"><span class="brand-mark"><svg viewBox="0 0 24 24"><path d="M5 3.8h8.6a5.4 5.4 0 0 1 5.4 5.4v5.4a5.6 5.6 0 0 1-5.6 5.6H5V3.8Zm5 4.2v8l6-4-6-4Z"/></svg></span><span>开戏 DramaGo</span></a><button class="menu-button" type="button" aria-label="打开导航" aria-expanded="false" data-menu-button>☰</button><nav class="site-nav" data-site-nav><a href="../product/">Product</a><a aria-current="page" href="./">Docs</a><a href="../experiments/">Experiments</a><a href="../changelog/">Changelog</a><a href="../roadmap/">Roadmap</a></nav><div class="header-actions"><span class="version-label">v0.5.0</span><label class="theme-picker"><span class="skip-link">主题</span><select aria-label="主题" data-theme-picker><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label><a class="github-button" href="https://github.com/Huidian-drumer/dramago">GitHub ↗</a></div></div></header>
+<main id="main"><section class="page-hero"><div class="docs-container"><p class="breadcrumb"><a href="../">DramaGo</a> / <a href="./">Docs</a> / Architecture</p><h1>Architecture</h1><p>模型生成之外，DramaGo 如何落实 scope、merge、version、hash、candidate 和 adopt。</p></div></section><div class="docs-container docs-layout"><aside class="docs-sidebar"><h2>Getting started</h2><a href="./">Overview</a><a href="./quick-start.html">Quick Start</a><h2>Core</h2><a href="./concepts.html">Concepts</a><a href="./operations.html">Operations</a><a aria-current="page" href="./architecture.html">Architecture</a><h2>Reference</h2><a href="./reference.html">Environment & Errors</a></aside><article class="docs-content">
+<h2>Execution pipeline</h2><pre><code>Creative Brief
+  → Operation Router
+  → Writer
+  → Output Contract
+  → Programmatic Merge / Append
+  → Semantic Validator
+  → Candidate Version
+  → Compare-and-swap Adopt</code></pre><p>CREATE 可以在 Writer 前选择轻量 ContentPlan 与 Mechanism Retrieval；EXPAND、REWRITE 和 CONTINUE 保持直接链路。</p>
+<h2>Selection and merge</h2><p><code>selection_range</code> 是程序输入，不只是 Prompt 文本。目标片段以字符区间解析和替换，范围外内容由程序保留。Provider 若返回错误类型或异常尺寸，候选不会进入可自动采用状态。</p>
+<h2>Version safety</h2><p>任务基于明确 <code>source_version_id</code>。生成完成前重新读取作品当前版本；如果来源已过期，候选可保留，但 <code>source_is_current=false</code>。采用时执行条件更新：</p><pre><code>UPDATE works
+SET current_version_id = ?
+WHERE id = ?
+  AND current_version_id = ?</code></pre><p>受影响行数不是 1 时返回 <code>SOURCE_VERSION_CONFLICT</code>，候选不会被删除。</p>
+<h2>Validation binding</h2><p>candidate 保存 <code>content_hash</code>、<code>validator_version</code> 和 <code>validated_at</code>。checks 同时绑定 candidate id 与 content hash；采用前 hash 不一致会返回 <code>VALIDATION_STALE</code>。</p>
+<h2>Trace and privacy</h2><p>Creative Trace 记录 task、operation、source/candidate、scope、provider/model、prompt template、merge、validation 与 adopt 状态。API Key、Authorization 和完整 Secret 不进入 trace。</p>
+<h2>Runtime boundary</h2><p>当前演示链路仍使用同步长 HTTP WRITE。历史延迟实验说明旧约 90 秒边界来自 45 秒 × 2 的应用尝试，而不是已证明的固定宿主硬限制。Queue 与 durable execution 被记录为未来路线图，不在 v0.5.0 实施。</p>
+</article></div></main><footer class="site-footer"><div class="docs-container footer-inner"><span>DramaGo Docs · Architecture</span><nav class="footer-links"><a href="./reference.html">Next: Reference →</a><a href="https://github.com/Huidian-drumer/dramago/blob/main/docs/ARCHITECTURE.md">Source doc ↗</a></nav></div></footer><script src="../assets/site.js"></script></body></html>

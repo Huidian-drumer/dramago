@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://huidian-drumer.github.io/dramago/
+Sitemap: https://huidian-drumer.github.io/dramago/sitemap.xml
