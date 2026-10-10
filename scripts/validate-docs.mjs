@@ -6,7 +6,8 @@ const docsRoot = path.join(root, 'docs');
 const required = [
   'index.html', '404.html', 'product/index.html', 'guide/index.html',
   'guide/quick-start.html', 'guide/concepts.html', 'guide/operations.html',
-  'guide/architecture.html', 'guide/reference.html', 'experiments/index.html',
+  'guide/architecture.html', 'guide/capability-boundaries.html', 'guide/reference.html',
+  'guide/provenance.html', 'experiments/index.html',
   'changelog/index.html', 'roadmap/index.html', 'assets/tokens.css',
   'assets/site.css', 'assets/site.js', 'sitemap.xml'
 ];

@@ -9,4 +9,6 @@
 
 [Read the full immutable audit](DRAMAGO_FULL_NON_WRAPPER_RED_TEAM_AUDIT_V1.md).
 
+[Read the P1 credibility alignment report](P1_CREDIBILITY_ALIGNMENT_REPORT.md).
+
 > **Important limitation:** 该报告不是法律原创认证、第三方安全证书或通用模型准确率证明。
