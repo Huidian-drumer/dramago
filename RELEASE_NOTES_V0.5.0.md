@@ -4,6 +4,8 @@ DramaGo is an AI short-drama creative workbench that turns one-shot LLM generati
 
 > DramaGo v0.5.0 is a validated portfolio MVP. The core author workflow and real-model experiments are complete. Production-scale async execution, authentication, billing and large-scale user validation remain roadmap items.
 
+> **Post-release clarification:** “validated” here means engineering workflow validation, controlled real-model experiments and a small-sample human blind review—not market validation, production reliability, an SLA or statistical content superiority. See [Capability Boundaries](docs/CAPABILITY_BOUNDARIES.md) and the [v0.5.0 clarification note](docs/errata/v0.5.0-capability-clarifications.md).
+
 ## What DramaGo is
 
 Authors can CREATE a full draft, EXPAND a reliable selection, REWRITE a full work or selection, and CONTINUE without asking the model to rewrite prior text. Generated content is saved as a Candidate and must pass program and semantic checks before CAS adoption.
@@ -13,8 +15,8 @@ Authors can CREATE a full draft, EXPAND a reliable selection, REWRITE a full wor
 - Added strong `full / segment / continuation` output contracts.
 - Added programmatic range replacement and continuation append.
 - Added source-version checks, Candidate isolation, content-hash binding and CAS adoption.
-- Added Story Facts snapshots and an independent Semantic Validator safety layer.
-- Added optional ContentPlan and Mechanism Retrieval for selected CREATE cases.
+- Added version/hash-bound Story Facts validation snapshots and a separate model-assisted Semantic Validator stage with programmatic enforcement.
+- Added an experimental API/benchmark ContentPlan and Mechanism Retrieval path for selected CREATE cases; the v0.5.0 UI has no toggle.
 - Added a public documentation system, experiment index and ADR set.
 
 ## What was validated
@@ -40,7 +42,7 @@ The public conclusion is: **Blind A/B showed selective—not universal—benefit
 ## Product decisions
 
 - Content Intelligence is an **Optional Structural Enhancement**.
-- Semantic Validator is a safety layer, not a quality score or formal proof.
+- Semantic Validator is a model-assisted safety stage with program-enforced blocking/adoption controls, not an independent truth engine, quality score or formal proof.
 - DeepSeek Flash is the preferred portfolio-demo Writer candidate based on three successful candidate-creation runs, not an SLA claim.
 - Production Queue and durable async Writer were investigated and deferred.
 
@@ -58,3 +60,5 @@ See [DramaGo Roadmap](docs/roadmap/index.html) and [Future Productization Roadma
 ## Public-history provenance
 
 The validated MVP was developed through an internal iterative history and consolidated into the public repository as the v0.5.0 release snapshot, while preserving the existing public GitHub history. Internal commits were not represented as individually migrated public commits.
+
+See [Repository Provenance](docs/PROVENANCE.md) for source classification, dependencies and the limits of this evidence.

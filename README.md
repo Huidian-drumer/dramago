@@ -7,7 +7,7 @@
 面向短剧作者的 AI 文字创作工作台：让一次性生成变成可编辑、可追踪、可校验的创作流程。
 
 [![Version](https://img.shields.io/badge/version-v0.5.0-0969da?style=flat-square)](RELEASE_NOTES_V0.5.0.md)
-[![Status](https://img.shields.io/badge/status-Validated%20Portfolio%20MVP-1a7f37?style=flat-square)](DOCUMENTATION.md)
+[![Status](https://img.shields.io/badge/status-Validated%20Portfolio%20MVP-1a7f37?style=flat-square)](docs/CAPABILITY_BOUNDARIES.md#meaning-of-validated-portfolio-mvp)
 [![Node](https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)](package.json)
 [![License](https://img.shields.io/badge/license-MIT-8250df?style=flat-square)](LICENSE)
 
@@ -33,7 +33,7 @@ Creative Brief → Operation Router → Writer → Output Contract
 
 | Operation | Provider output | Program behavior |
 | --- | --- | --- |
-| `CREATE` | `full` | 建立完整候选稿；结构增强为可选支线 |
+| `CREATE` | `full` | 建立完整候选稿；默认 UI 走 Direct Writer |
 | `EXPAND` | `segment`（选区） | 按可靠字符范围合并，保留范围外正文 |
 | `REWRITE` | `full` / `segment` | 管理目标范围、来源版本与候选稿 |
 | `CONTINUE` | `continuation` | 程序追加，前文不会被模型整篇重写 |
@@ -45,9 +45,11 @@ Creative Brief → Operation Router → Writer → Output Contract
 - 生成期间源版本变化时，旧候选不能覆盖新版本。
 - checks 与 candidate content hash 绑定；采用执行 compare-and-swap。
 - Provider 失败明确进入 failed，不使用 fixture 或固定正文冒充成功。
-- Semantic Validator 是独立安全层，不是文学评分器或形式化证明。
+- Semantic Validator 是独立执行阶段的模型辅助校验；程序负责 finding allowlist、证据门槛、hash 绑定、`can_auto_apply` 与 CAS 采用控制。它不是独立真值系统、文学评分器或形式化证明。
 
-当前工程成熟度是 **可靠 L2 + 最小内容保护层**，不是生产 SaaS。
+当前工程成熟度按 **DramaGo 项目内部定义的 L2 工作流等级**评估：具备程序化 scope、version、candidate 与 adopt 保护，并带最小内容保护层；这不是行业认证，也不是生产 SaaS。
+
+Content Intelligence V0.1 是 **experimental、optional 的 API / benchmark 结构增强路径**。Planner 选择机制、Writer 是否落实机制仍由模型完成；程序只执行已知 ID allowlist、去重、最多 5 条、持久化与 trace。v0.5.0 前台没有该开关，用户从当前 UI 点击 CREATE 默认进入 Direct Writer。人工盲评只显示 selective—not universal—benefit。详见 [Capability Boundaries](docs/CAPABILITY_BOUNDARIES.md) 与 [Experiments](docs/experiments/index.html)。
 
 ## What the experiments showed
 
@@ -56,7 +58,7 @@ Creative Brief → Operation Router → Writer → Output Contract
 - Writer latency 审计将旧约 90 秒失败边界定位为应用自身 `45s × 2 attempts`。180 秒实验窗口内，冻结的 2000 字输入两次成功，其中一次用时 94,406 ms。
 - 3-case human blind A/B 显示 **selective—not universal—benefit**：隐藏豪门继承人偏好 Content Intelligence，17 岁新帝与“看见别人即将后悔选择”的大学生偏好 Direct Writer。
 
-因此，Content Intelligence 是 **Optional Structural Enhancement**，不是默认 CREATE Pipeline。
+因此，Content Intelligence 是 **Optional Structural Enhancement**，不是默认 CREATE Pipeline，也不是自研叙事模型或确定性规划算法。
 
 ## Quick start
 
@@ -98,22 +100,32 @@ audit/               Wrapper audit and fault injection
 benchmark/           Curated benchmark reports
 portfolio-evidence/  Public product evidence and decisions
 docs/                GitHub Pages product and documentation site
+script-writer/        Legacy V0.1 text experiment; not current runtime
+dist/index.html       Legacy prototype source packaged at /experience
+dist/                 Generated release artifacts (including the legacy source above)
+drizzle/meta/         Generated migration metadata
 ```
+
+The current v0.5.0 runtime is `worker/ + web/ + db/`. Legacy components are retained for history and provenance but are outside the current authoring call path.
 
 ## Documentation
 
 - [Documentation index](DOCUMENTATION.md)
 - [Architecture](docs/ARCHITECTURE.md)
+- [Capability Boundaries](docs/CAPABILITY_BOUNDARIES.md)
+- [Repository Provenance](docs/PROVENANCE.md)
 - [Product decisions](docs/PRODUCT_DECISIONS.md)
 - [Wrapper Audit](WRAPPER_AUDIT_REPORT.md)
 - [L2 Hardening](L2_HARDENING_REPORT.md)
 - [Portfolio Evidence](portfolio-evidence/PORTFOLIO_EVIDENCE_PACKAGE.md)
+- [Non-wrapper Red-Team Audit](reports/audit/DRAMAGO_FULL_NON_WRAPPER_RED_TEAM_AUDIT_V1.md)
+- [P1 Credibility Alignment](reports/audit/P1_CREDIBILITY_ALIGNMENT_REPORT.md)
 - [Release notes](RELEASE_NOTES_V0.5.0.md)
 - [Roadmap](portfolio-evidence/FUTURE_ROADMAP.md)
 
 ## Scope and limits
 
-DramaGo v0.5.0 is a validated portfolio MVP. The core author workflow and real-model experiments are complete. Production-scale async execution, authentication, billing, high concurrency, multimedia generation and large-scale creator validation remain roadmap items.
+DramaGo v0.5.0 is a validated portfolio MVP. Here, “validated” means engineering workflow validation, controlled real-model experiments and a small-sample human blind review. It does not mean market validation, large-scale creator validation, production reliability validation, an SLA or statistical content superiority. Production-scale async execution, authentication, billing, high concurrency and multimedia generation remain roadmap items.
 
 ## Contributing and security
 
