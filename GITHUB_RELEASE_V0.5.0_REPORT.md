@@ -1,6 +1,6 @@
 # DramaGo v0.5.0 — Public Release Preparation Report
 
-Status: Pull-request preparation; merge, tag, GitHub Release and production Pages deployment are intentionally deferred.
+Status: Pull request open; merge, tag, GitHub Release and production Pages deployment are intentionally deferred.
 Date: 2026-10-10
 
 ## Release identity
@@ -12,8 +12,8 @@ Date: 2026-10-10
 5. GitHub Release URL: not created; deferred
 6. GitHub Pages URL: `https://huidian-drumer.github.io/dramago/` (production still serves the pre-merge site)
 7. Live Demo URL: `https://dramaworld-v01.huidian31.chatgpt.site/` (may require authorized access)
-8. Repository description: to be confirmed through GitHub metadata before PR handoff
-9. Topics: to be confirmed through GitHub metadata before PR handoff
+8. Repository description: `开戏 DramaGo：可编辑、可追踪、可校验的 AI 短剧创作工作台｜Validated Portfolio MVP`
+9. Topics: `ai-writing`, `llms`, `short-drama`, `creative-tools`, `cloudflare-workers`, `product-management`, `portfolio`, `javascript`
 
 ## Repository synchronization
 
@@ -58,8 +58,8 @@ Date: 2026-10-10
 
 ## Git and unresolved gates
 
-29. Git status: release worktree contains intended release changes until commits are created.
-30. Unresolved before handoff: re-fetch `origin/main`, create reviewable commits, push `release/v0.5.0`, configure repository metadata if authorized, and open the pull request. Production Pages, tag and Release remain blocked on explicit “确认合并”.
+29. Git status: five reviewable commits were created and pushed without force from `release/v0.5.0`; `origin/main` was re-fetched immediately before the push and remained at `a76503161e9933ab2a921b1045c22905c6a6aab3`.
+30. Pull request: `https://github.com/Huidian-drumer/dramago/pull/1`. Repository metadata is configured. Human approval, merge, tag `v0.5.0`, GitHub Release and production Pages deployment remain intentionally deferred until explicit “确认合并”.
 
 ## Provenance
 

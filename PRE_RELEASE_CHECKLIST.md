@@ -10,7 +10,7 @@ Release branch: `release/v0.5.0`
 - [x] Release branch created from the public baseline.
 - [x] Source repository left unchanged.
 - [x] Snapshot transplant used; unrelated histories were not merged.
-- [ ] `origin/main` re-fetched and unchanged immediately before push.
+- [x] `origin/main` re-fetched and unchanged immediately before push.
 
 ## Version and release content
 
@@ -46,8 +46,8 @@ Release branch: `release/v0.5.0`
 
 ## Git and release gate
 
-- [ ] Clean, reviewable commits created.
-- [ ] Release branch pushed without force.
-- [ ] Pull request opened against `main`.
+- [x] Clean, reviewable commits created.
+- [x] Release branch pushed without force.
+- [x] Pull request opened against `main`: <https://github.com/Huidian-drumer/dramago/pull/1>.
 - [ ] Human approval received before merge.
-- [ ] Tag, GitHub Release and production Pages intentionally deferred until explicit approval.
+- [x] Tag, GitHub Release and production Pages intentionally deferred until explicit approval.
