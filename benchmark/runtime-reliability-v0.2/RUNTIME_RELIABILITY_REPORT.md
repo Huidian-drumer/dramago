@@ -82,7 +82,7 @@
 
 B 路径的模型顺序实测为 `deepseek-flash → deepseek-v4-pro → deepseek-flash`。B 正文已在 Validator 前以 `pending` 候选保存；最终 Validator 给出 `blocked`，候选仍可查看但不可自动采用。这是语义保护结果，不是链路失败。
 
-完整模型 usage 见 [smoke_results.json](./smoke_results.json)。
+完整模型 usage 保存在内部原始实验记录中；公共 release snapshot 仅保留本报告中的脱敏汇总数据。
 
 ## 6. 冻结 A/B 基准结果
 
@@ -122,7 +122,7 @@ B 组 ContentPlan 与机制召回保存在 `plans/`；失败案例在 `cases/` �
 
 这是 20 条固定小样本结果，不是 Validator 通用准确率。结果显示冲突召回较强，但当前误杀和 severity 过严都很明显；不能据此宣称 Validator V2 已达到通用可用水平。
 
-详细输入、原始 findings 和 usage 见 [validator_v2_regression.json](./validator_v2_regression.json)。
+详细输入、原始 findings 与 usage 未包含在公共 release snapshot；本报告保留必要的汇总与结论。
 
 ## 8. 工程异常与未评估项
 
