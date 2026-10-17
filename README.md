@@ -1,6 +1,6 @@
 # 开戏 DramaGo · Windows Text Studio V1.4
 
-**Private staging — 公开前验收源码；不是生产级 SaaS 或公开稳定安装版。** 本仓库以独立根提交建立，不继承旧公开或内部 Git 历史。本阶段不提供 Windows ZIP，不部署 Pages。
+**V1.4 Public Preview — Windows 文本创作工作台源码预览；不是生产级 SaaS 或公开稳定安装版。** 本仓库以独立根提交建立，不继承旧公开或内部 Git 历史。本次仅发布源码和版本说明，不提供 Windows ZIP。GitHub 自动生成的 Source code 压缩包不是 Windows 安装包。
 
 V1.4 包含空白作品、手工写作、SQLite 草稿、版本保存/恢复/比较、CREATE/EXPAND/REWRITE/CONTINUE、独立 Writer/Validator、候选隔离、安全重新审核、Hash/CAS、保守 Story Memory 与 Markdown 导出。人物关系树已从界面移除，可靠记忆能力保留。
 
@@ -9,8 +9,8 @@ V1.4 包含空白作品、手工写作、SQLite 草稿、版本保存/恢复/比
 Windows 10/11、Node.js 24.18+（需要 node:sqlite）、pnpm；Electron 固定 44.7.0。包元数据仍保留 0.5.0，不代表源码是旧工作台。
 
 ```powershell
-git clone https://github.com/Huidian-drumer/dramago-v14-public-staging.git
-cd dramago-v14-public-staging
+git clone https://github.com/Huidian-drumer/dramago.git
+cd dramago
 pnpm install --frozen-lockfile
 pnpm test
 pnpm build
@@ -29,6 +29,9 @@ Windows 打包入口 `pnpm desktop:package` 仅保留源码能力；本阶段不
 - [V1.4 版本说明](RELEASE_NOTES_V1.4.md)
 - [V1.4 开发与数据安全](docs/V1_4_TEXT_STUDIO.md)
 - [第三方许可](THIRD_PARTY_NOTICES.md) · [项目许可](LICENSE)
+- [官网（仅静态介绍）](https://huidian-drumer.github.io/dramago/) · [源码预发布](https://github.com/Huidian-drumer/dramago/releases/tag/v1.4.0-text-studio-public-preview)
+
+公开根提交为 `5fca068658cf19b137e5054d249d32a258c0f5b9`，其后的发布说明更新不引入旧历史。旧 v0.5.0 仓库、PR 和 Release 由负责人私有留档，旧 commit/PR 链接不属于这个新仓库。保留的历史审计不是 V1.4 新测试结果。
 
 以下是已公开的 v0.5.0 历史介绍，不是 V1.4 当前安装说明或验收结论；其中旧仓库、Pages 和审计对象仅作历史引用。
 

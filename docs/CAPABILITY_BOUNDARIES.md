@@ -1,5 +1,7 @@
 # DramaGo v0.5.0 Capability Boundaries
 
+> Historical v0.5.0 capability record, not the current V1.4 feature list. In V1.4, version-bound Story Memory is supplied to the Writer under conservative trust rules. See [V1.4 documentation](V1_4_TEXT_STUDIO.md) and [current release boundaries](../RELEASE_NOTES_V1.4.md); the historical claims below remain unchanged.
+
 This document separates program guarantees from model-mediated behavior for the public v0.5.0 snapshot. It is the primary reference for interpreting product claims.
 
 ## What the program guarantees

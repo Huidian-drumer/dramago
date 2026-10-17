@@ -1,5 +1,7 @@
 # DramaGo Repository Provenance
 
+> Historical v0.5.0 record. The following describes the former public repository, now privately retained by its owner. This clean V1.4 repository has a new root and does not contain the former commits, PRs or v0.5.0 Release. For the current graph and scope see [current provenance](../PROVENANCE.md) and [V1.4 documentation](V1_4_TEXT_STUDIO.md).
+
 ## Public history
 
 - Public repository: [`Huidian-drumer/dramago`](https://github.com/Huidian-drumer/dramago).

@@ -1,5 +1,11 @@
 # DramaGo Documentation
 
+## V1.4 当前入口
+
+[V1.4 开发与数据安全](docs/V1_4_TEXT_STUDIO.md) · [V1.4 源码预览说明](RELEASE_NOTES_V1.4.md) · [当前仓库来源](PROVENANCE.md)。本次没有 Windows 下载包或在线创作服务。
+
+以下保留的是 **v0.5.0 历史导航**，不是 V1.4 安装说明或现行能力清单。历史提交、PR 和 Release 归负责人私有留档；新仓库没有继承其 Git 历史。
+
 DramaGo v0.5.0 是一个验证型 AI 短剧创作工作台 MVP。本文档只做导航；详细说明保存在对应页面与报告中。
 
 “Validated”只表示工程工作流验证、受控真实模型实验与小样本人工盲评，不表示市场验证、生产可靠性验证、SLA 或内容优势的统计证明。能力声明以 [Capability Boundaries](docs/CAPABILITY_BOUNDARIES.md) 为准。

@@ -1,4 +1,4 @@
-# Third-party notices — source staging
+# Third-party notices — source preview
 
 DramaGo project-authored source is offered under [MIT](LICENSE). That license does not replace third-party licenses or assert exclusive ownership of general programming techniques. No dependency implementation, Electron executable, browser binary, image, font, video, user database or screenshot is vendored in this source snapshot.
 

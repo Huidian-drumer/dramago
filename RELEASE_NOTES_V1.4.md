@@ -1,6 +1,16 @@
-# V1.4 Windows Text Studio — Source Preview Preparation
+# DramaGo V1.4 — Windows Text Studio Public Preview
 
-状态：Private staging，尚未公开发布；没有 Windows 下载资产。
+状态：源码 Pre-release。公开标签：`v1.4.0-text-studio-public-preview`。不是生产级 SaaS，也不是公开稳定安装版；没有 Windows 下载资产。GitHub 自动生成的源码压缩包不能作为已验收 EXE 使用。
+
+## 能力与边界
+
+- 作品管理、空白作品、手工创作、SQLite 草稿、版本比较、历史恢复及 Markdown 导出。
+- CREATE / EXPAND / REWRITE / CONTINUE、独立 Writer / Validator、候选隔离、审核恢复和 Hash / CAS 采用保护。
+- Story Memory 使用保守的证据和状态可信策略；不能保证任意复杂中文事实的识别准确率。
+- 人物关系树已从 UI 移除，可靠记忆能力保留。
+- 不包含视频生成、TTS、分镜或生产级多租户 SaaS。
+- 真实模型文学质量与 Validator 语义准确率尚未系统验收。受控测试、历史模型实验和个人操作验收不能混为通用质量保证。
+- GitHub Pages 仅提供静态说明，不运行创作 API，也不存放服务端密钥。
 
 本源码快照保留冻结版 desktop、local、worker、web、db、drizzle 和核心测试代码。新 Git 根不继承历史。仅调整文档与脱敏配置元数据，排除私人报告、运行结果与非必要实验产物。
 
