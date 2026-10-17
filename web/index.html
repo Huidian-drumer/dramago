@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f7f8">
+  <meta name="description" content="开戏 DramaGo AI 短剧创作工作台：生成、局部改写、候选审核与安全版本采用。">
+  <meta name="dramago-local-token" content="__DRAMAGO_LOCAL_TOKEN__">
+  <title>开戏 DramaGo｜AI 短剧创作工作台</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2319191d'/%3E%3Cpath d='M18 16h16c10 0 16 6 16 16S44 48 34 48H18V16Zm9 9v14h7c4 0 7-2 7-7s-3-7-7-7h-7Z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/workbench.css">
+</head>
+<body data-view="loading">
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="brand" href="/" data-action="show-editor" aria-label="返回当前作品正文">
+        <span class="brand-glyph">D</span>
+        <span class="brand-copy"><strong>开戏 <b>DramaGo</b></strong><small>AI 短剧创作工作台</small></span>
+      </a>
+
+      <button class="work-identity" type="button" data-action="open-work-switcher" aria-label="我的作品：选择或搜索作品">
+        <span class="work-title" id="headerWorkTitle">新作品</span>
+        <span class="sync-state" id="syncState"><i></i><span>正在载入</span></span>
+      </button>
+
+      <div class="header-actions">
+        <span class="provider-pill checking" id="providerPill"><i></i><span>检查模型服务</span></span>
+        <button class="header-button export-button" type="button" data-action="export-current">导出</button>
+        <button class="header-button" type="button" data-action="open-work-switcher">我的作品</button>
+        <button class="header-button" type="button" data-action="new-work">新建作品</button>
+        <button class="icon-button" type="button" data-action="open-checks" aria-label="查看内容检查" title="内容检查">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 12 2.5 2.5L16 9M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/></svg>
+          <span class="notification-dot" id="checkNotification" hidden></span>
+        </button>
+        <button class="icon-button" type="button" data-action="open-history" aria-label="查看版本历史" title="版本历史">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5m4-1v5l3 2"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="navigation-rail" aria-label="主导航">
+      <div class="rail-primary">
+        <button class="rail-button active" type="button" data-action="show-editor" aria-label="作品正文" data-tooltip="作品正文">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h8l4 4v14H7zM15 3v5h4M10 12h6m-6 4h6"/></svg>
+        </button>
+        <button class="rail-button" type="button" data-action="new-work" aria-label="新建作品" data-tooltip="新建作品">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <button class="rail-button" type="button" data-action="open-history" aria-label="版本历史" data-tooltip="版本历史">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 3h10v6H7zm-2 6h14v12H5z"/></svg>
+        </button>
+        <button class="rail-button" type="button" data-action="show-overview" aria-label="作品全貌" data-tooltip="作品全貌">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2M3 8l6-4 6 5 6-6"/></svg>
+        </button>
+      </div>
+      <div class="rail-secondary">
+        <button class="rail-button" type="button" data-action="open-recycle-bin" aria-label="回收站" data-tooltip="回收站">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 3h6l1 4H8l1-4Zm-3 4 1 14h10l1-14M10 11v6m4-6v6"/></svg>
+        </button>
+        <button class="rail-button" type="button" data-action="open-settings" aria-label="作品设置" data-tooltip="作品设置">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM19 12l2-1-2-4-2 .5-1.5-1L15 4h-6l-.5 2.5-1.5 1L5 7l-2 4 2 1v2l-2 1 2 4 2-.5 1.5 1L9 22h6l.5-2.5 1.5-1 2 .5 2-4-2-1z"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <main class="main-stage" id="mainStage">
+      <div id="viewRoot" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="side-sheet" id="sideSheet" aria-label="辅助面板" hidden></aside>
+  <div class="modal-layer" id="modalLayer" hidden></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="/workbench.js" type="module"></script>
+</body>
+</html>

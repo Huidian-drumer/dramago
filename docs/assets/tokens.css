@@ -1,0 +1,98 @@
+:root {
+  color-scheme: light;
+  --canvas-default: #ffffff;
+  --canvas-subtle: #f6f8fa;
+  --canvas-inset: #eff2f5;
+  --fg-default: #1f2328;
+  --fg-muted: #59636e;
+  --fg-subtle: #818b98;
+  --border-default: #d1d9e0;
+  --border-muted: #d8dee4;
+  --accent-fg: #0969da;
+  --accent-emphasis: #0969da;
+  --accent-muted: #ddf4ff;
+  --success-fg: #1a7f37;
+  --success-emphasis: #1f883d;
+  --success-muted: #dafbe1;
+  --attention-fg: #9a6700;
+  --attention-emphasis: #bf8700;
+  --attention-muted: #fff8c5;
+  --danger-fg: #d1242f;
+  --danger-emphasis: #cf222e;
+  --danger-muted: #ffebe9;
+  --done-fg: #8250df;
+  --done-muted: #fbefff;
+  --header-bg: rgba(255, 255, 255, 0.92);
+  --overlay-bg: rgba(31, 35, 40, 0.5);
+  --radius-small: 6px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+  --shadow-small: 0 1px 0 rgba(31, 35, 40, 0.04);
+  --shadow-medium: 0 8px 24px rgba(140, 149, 159, 0.2);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  --content-width: 1216px;
+  --docs-width: 1120px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas-default: #0d1117;
+  --canvas-subtle: #151b23;
+  --canvas-inset: #010409;
+  --fg-default: #f0f6fc;
+  --fg-muted: #9198a1;
+  --fg-subtle: #656c76;
+  --border-default: #3d444d;
+  --border-muted: #262c36;
+  --accent-fg: #4493f8;
+  --accent-emphasis: #1f6feb;
+  --accent-muted: #102b4c;
+  --success-fg: #3fb950;
+  --success-emphasis: #238636;
+  --success-muted: #12261e;
+  --attention-fg: #d29922;
+  --attention-emphasis: #9e6a03;
+  --attention-muted: #2b2104;
+  --danger-fg: #f85149;
+  --danger-emphasis: #da3633;
+  --danger-muted: #3c1418;
+  --done-fg: #a371f7;
+  --done-muted: #271946;
+  --header-bg: rgba(13, 17, 23, 0.92);
+  --overlay-bg: rgba(1, 4, 9, 0.72);
+  --shadow-small: 0 0 transparent;
+  --shadow-medium: 0 8px 24px rgba(1, 4, 9, 0.42);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --canvas-default: #0d1117;
+    --canvas-subtle: #151b23;
+    --canvas-inset: #010409;
+    --fg-default: #f0f6fc;
+    --fg-muted: #9198a1;
+    --fg-subtle: #656c76;
+    --border-default: #3d444d;
+    --border-muted: #262c36;
+    --accent-fg: #4493f8;
+    --accent-emphasis: #1f6feb;
+    --accent-muted: #102b4c;
+    --success-fg: #3fb950;
+    --success-emphasis: #238636;
+    --success-muted: #12261e;
+    --attention-fg: #d29922;
+    --attention-emphasis: #9e6a03;
+    --attention-muted: #2b2104;
+    --danger-fg: #f85149;
+    --danger-emphasis: #da3633;
+    --danger-muted: #3c1418;
+    --done-fg: #a371f7;
+    --done-muted: #271946;
+    --header-bg: rgba(13, 17, 23, 0.92);
+    --overlay-bg: rgba(1, 4, 9, 0.72);
+    --shadow-small: 0 0 transparent;
+    --shadow-medium: 0 8px 24px rgba(1, 4, 9, 0.42);
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "dramaworld-script-writer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node test/run-tests.mjs",
+    "build:artifacts": "node test/build-artifacts.mjs"
+  }
+}
